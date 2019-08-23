@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".student.SearchTeachersFragment"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.9"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <com.libizo.CustomEditText
+                android:id="@+id/etPincodeSearchTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="pincode"
+                android:inputType="phone"
+
+                app:libIZO_setBackgroundColor="#81B2EBF2"
+                app:libIZO_clearIconTint="#2196F3"
+                app:libIZO_setBorderColor="#4FC3F7"
+                app:libIZO_setBorderView="true"
+                app:libIZO_setClearIconVisible="true"
+                app:libIZO_setCornerRadius="4dp"
+                app:libIZO_setPrefixTextColor="#1976D2"
+                app:libIZO_setStrokeWidth="2dp" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"></View>
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinnerLevelTeacherSearchTeacher"
+            app:ms_arrow_tint="#1976D2"
+            app:ms_background_color="#6AB2EBF2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"></View>
+
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/searchTeacherBtn"
+    android:background="#5C26C6DA"
+    android:text="Search"
+
+    ></Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+
+</LinearLayout>

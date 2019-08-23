@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FinalProj_Minor_gr2</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">MlAFtPazGako3mUPyEmQZshzidYbcVSjLMJwOvam</string>
+    <string name="back4app_client_key">u83r98PfdI4WLMCSrlHr4DuAHrfy94GTwiEXv4ZR</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegistrationActivity"
+    android:id="@+id/regLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+
+            android:background="@drawable/shape_layout">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+
+                android:src="@drawable/ic_android_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+
+
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Registration"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_marginTop="80dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etFullname"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Username"
+                    android:padding="20dp"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:drawableLeft="@drawable/full_name_draw"
+                    android:singleLine="true"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Email"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"/>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <EditText
+                    android:id="@+id/etPhno"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Enter Ph no"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:inputType="phone"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"/>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <Spinner
+                    android:id="@+id/spinnerSetInstReg"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"></Spinner>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <Spinner
+                    android:id="@+id/spinnerSetInstSubCatReg"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"></Spinner>
+
+                <EditText
+                    android:id="@+id/etAffiliation"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:textAlignment="center"
+                    android:hint="Affilation"
+                    android:visibility="gone"
+                    android:textColorHint="#000000"
+                    android:drawableLeft="@drawable/ic_school_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"
+                  />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <EditText
+                    android:id="@+id/etLevName"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:textAlignment="center"
+                    android:hint=""
+                    android:textColorHint="#000000"
+                    android:drawableLeft="@drawable/ic_school_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"
+                    android:visibility="gone"/>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <EditText
+                    android:id="@+id/etPinCode"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:textAlignment="center"
+                    android:hint="Enter Pincode"
+                    android:textColorHint="#000000"
+                    android:drawableLeft="@drawable/ic_pin_drop_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"
+                    />
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+                <EditText
+                    android:id="@+id/etActualLocation"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Enter actual location"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/ic_pin_drop_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"/>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+
+
+                <EditText
+                    android:id="@+id/etPwd"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Enter Passsword"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+
+                <EditText
+                    android:id="@+id/etRePwd"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_ed"
+                    android:hint="Re-Enter Password"
+                    android:textAlignment="center"
+                    android:textColorHint="#000000"
+                    android:inputType="textPassword"
+                    android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+                    android:padding="20dp"
+                    android:singleLine="true"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"></View>
+
+
+
+                <Button
+                    android:id="@+id/regBtn"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/shape_btn"
+                    android:text="Register"
+                    android:textColor="@android:color/white"
+
+
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/vLog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Already have an account?" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login"
+                        android:textColor="#7B1FA2"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
