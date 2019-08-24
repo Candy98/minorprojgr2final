@@ -65,8 +65,11 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:id="@+id/searchTeacherBtn"
-    android:background="#5C26C6DA"
+    android:background="@drawable/shape_btn_2"
     android:text="Search"
+    android:textStyle="bold"
+
+    android:fontFamily="@font/bubblegum_sans"
 
     ></Button>
 
@@ -79,8 +82,12 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvFragmentSearchTeachers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/rcv_searched_teachers_list"
+            ></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
 
