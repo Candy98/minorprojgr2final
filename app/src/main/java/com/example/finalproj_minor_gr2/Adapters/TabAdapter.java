@@ -5,7 +5,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.finalproj_minor_gr2.student.ProfileFragment;
+import com.example.finalproj_minor_gr2.student.SavedCollegeFragment;
+import com.example.finalproj_minor_gr2.student.SavedSchoolFRagment;
 import com.example.finalproj_minor_gr2.student.SavedTeachersFragment;
+import com.example.finalproj_minor_gr2.student.SearchCollegeFragment;
+import com.example.finalproj_minor_gr2.student.SearchSchoolFragment;
 import com.example.finalproj_minor_gr2.student.SearchTeachersFragment;
 
 public class TabAdapter extends FragmentStatePagerAdapter {
@@ -29,9 +33,21 @@ public class TabAdapter extends FragmentStatePagerAdapter {
             }
 
             case 2: {
-                SavedTeachersFragment savedTeachersFragment=new SavedTeachersFragment();
+                SavedTeachersFragment savedTeachersFragment = new SavedTeachersFragment();
                 return savedTeachersFragment;
             }
+            case 3:
+                SearchSchoolFragment searchSchoolFragment = new SearchSchoolFragment();
+                return searchSchoolFragment;
+            case 4:
+                SavedSchoolFRagment savedSchoolFRagment = new SavedSchoolFRagment();
+                return savedSchoolFRagment;
+            case 5:
+                SearchCollegeFragment searchCollegeFragment = new SearchCollegeFragment();
+                return searchCollegeFragment;
+            case 6:
+                SavedCollegeFragment savedCollegeFragment = new SavedCollegeFragment();
+                return savedCollegeFragment;
 
             default:
                 return null;

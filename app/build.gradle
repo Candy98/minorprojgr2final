@@ -43,8 +43,8 @@ dependencies {
     implementation 'com.libizo:customedittext:1.0.6'
     implementation 'com.jaredrummler:material-spinner:1.3.1'
     implementation 'com.github.medyo:fancybuttons:1.9.1'
-
-
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
 
 
 }

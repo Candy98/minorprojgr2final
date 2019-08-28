@@ -10,10 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".student.TeachersListActivity"></activity>
-        <activity android:name=".student.StudentProfileActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity android:name=".teacher.TeacherMainActivity"></activity>
+        <activity android:name=".student.TeachersListActivity" />
+        <activity
+            android:name=".student.StudentProfileActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".RegistrationActivity" />
         <activity
             android:name=".LoginACtivity"
@@ -38,9 +39,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

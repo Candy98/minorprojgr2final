@@ -59,12 +59,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/shape_ed"
+                    android:drawableLeft="@drawable/full_name_draw"
                     android:hint="Username"
                     android:padding="20dp"
+                    android:singleLine="true"
                     android:textAlignment="center"
-                    android:textColorHint="#000000"
-                    android:drawableLeft="@drawable/full_name_draw"
-                    android:singleLine="true"/>
+                    android:textColorHint="#000000" />
 
                 <View
                     android:layout_width="10dp"

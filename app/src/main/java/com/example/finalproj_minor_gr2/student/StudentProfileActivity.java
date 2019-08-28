@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.example.finalproj_minor_gr2.Adapters.TabAdapter;
@@ -20,9 +21,13 @@ public class StudentProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ViewBinder();
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Profile"));
-        tabLayout.addTab(tabLayout.newTab().setText("SearchTeachers"));
-        tabLayout.addTab(tabLayout.newTab().setText("Saved Teachers"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.full_name_draw));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_search_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_save_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_search_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_save_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_search_black_24dp));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_save_black_24dp));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager =(ViewPager)findViewById(R.id.view_pager);
         TabAdapter tabsAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());

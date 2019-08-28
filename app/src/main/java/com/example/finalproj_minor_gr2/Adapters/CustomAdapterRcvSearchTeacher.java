@@ -70,7 +70,7 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
         return menuList.size();
     }
 
-    void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 
