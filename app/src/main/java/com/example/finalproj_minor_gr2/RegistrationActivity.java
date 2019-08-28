@@ -27,10 +27,10 @@ import de.mateware.snacky.Snacky;
 
 public class RegistrationActivity extends AppCompatActivity {
     View vLog, myView;
-    EditText etFullName, etEmail, etPwd, etRePwd, etPhNo, etLevName, etPinCode, etActualLocation, etAffilation;
+    EditText etFullName, etEmail, etPwd, etRePwd, etPhNo, etLevName, etPinCode, etActualLocation, etAffilation, etWebsite;
     Button regBtn;
     boolean isUname = false, isEmail = false, isPhnNo = false, isPwd = false, isRePwdMach = false;
-    boolean isUpper = false, isNumber = false, isActualLocation = false;
+    boolean isUpper = false, isNumber = false, isActualLocation = false, isValidWebsite = false;
 
 
     LoginACtivity sucSnack;
@@ -164,7 +164,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 AffilationVAlidator(etAffilation.getText().toString());
                 PinCodeValidator(etPinCode.getText().toString());
                 ActualLocationValidator(etActualLocation.getText().toString());
-                if (isUname && isEmail && isPhnNo && isPwd && isRePwdMach && selectedRegType != null && selectedRegSubType != null && isUpper && isNumber && isActualLocation) {
+                WebsiteValidator(etWebsite.getText().toString());
+
+                if (isUname && isEmail && isPhnNo && isPwd && isRePwdMach && selectedRegType != null && selectedRegSubType != null && isUpper && isNumber && isActualLocation && isValidWebsite) {
                     parseConnect();
                 }
             }
@@ -172,6 +174,15 @@ public class RegistrationActivity extends AppCompatActivity {
         isParseUserSignedUpChecker();
 
 
+    }
+
+    private void WebsiteValidator(String website) {
+        if (website.equals("")) {
+            FancyToast.makeText(this, "Please enter a website", FancyToast.LENGTH_LONG, FancyToast.ERROR, true).show();
+            isValidWebsite = false;
+        } else {
+            isValidWebsite = true;
+        }
     }
 
     private void ActualLocationValidator(String actualLocation) {
@@ -231,9 +242,10 @@ public class RegistrationActivity extends AppCompatActivity {
             appUser.put("Phone", etPhNo.getText().toString());
             appUser.put("Regtype", selectedRegType);
             appUser.put("level", selectedRegSubType);
-            appUser.put("affilation",etAffilation.getText().toString());
-            appUser.put("pincode",etPinCode.getText().toString());
-            appUser.put("actuallocation",etActualLocation.getText().toString());
+            appUser.put("affilation", etAffilation.getText().toString());
+            appUser.put("pincode", etPinCode.getText().toString());
+            appUser.put("actuallocation", etActualLocation.getText().toString());
+            appUser.put("website",etWebsite.getText().toString());
             progressDialog.setMessage("Registering " + etFullName.getText());
 
             progressDialog.show();
@@ -345,6 +357,7 @@ public class RegistrationActivity extends AppCompatActivity {
         etPinCode = findViewById(R.id.etPinCode);
         etLevName = findViewById(R.id.etLevName);
         etAffilation = findViewById(R.id.etAffiliation);
+        etWebsite = findViewById(R.id.etWebsite);
 
 
     }

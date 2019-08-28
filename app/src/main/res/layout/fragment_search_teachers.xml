@@ -29,6 +29,7 @@
                 android:layout_margin="5dp"
                 android:hint="pincode"
                 android:inputType="phone"
+                android:fontFamily="@font/bubblegum_sans"
 
                 app:libIZO_setBackgroundColor="#81B2EBF2"
                 app:libIZO_clearIconTint="#2196F3"
@@ -52,6 +53,7 @@
             app:ms_background_color="#6AB2EBF2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/bubblegum_sans"
 
 
             />

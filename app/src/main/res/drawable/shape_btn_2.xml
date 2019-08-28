@@ -7,7 +7,7 @@
         android:width="100dp"
         android:height="30dp"></size>
     <solid
-        android:color="#8B0277BD"
+        android:color="#6D0277BD"
         ></solid>
     <stroke
         android:width="0.9dp"
