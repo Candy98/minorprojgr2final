@@ -40,7 +40,7 @@ public class SearchTeachersFragment extends Fragment {
     LinearLayout bottomSheetTeachers;
     Button buttonBottomSheetSaveTeacher, buttonBottomSheetCancelTeacher;
 
-    TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher;
+    TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher,tvWebsiteTeacher;
     Button searchTeacherBtn;
     MaterialSpinner spinnerLevelTeacherSearchTeacher;
     String[] levelTeacherSearchTeacher = {"Select level", "Primary School", "High School", "Higher Secondary School", "Btech", "BCA"};
@@ -62,6 +62,9 @@ public class SearchTeachersFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_teachers, container, false);
         ViewBinder(view);
+
+        behavior = BottomSheetBehavior.from(bottomSheetTeachers);
+        behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         spinnerLevelTeacherSearchTeacher.setItems(levelTeacherSearchTeacher);
         spinnerLevelTeacherSearchTeacher.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
@@ -79,6 +82,12 @@ public class SearchTeachersFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position, ArrayList<ModelClassDemoSearchTeacher> menulist) {
                 ParseFetchData(menulist.get(position).getActivityName());
+            }
+        });
+        buttonBottomSheetCancelTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetCoordinatorLayout.setVisibility(View.GONE);
             }
         });
 
@@ -125,13 +134,23 @@ public class SearchTeachersFragment extends Fragment {
 
     private void ParseFetchData(String activityName) {
         ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
+        Toast.makeText(getContext(), activityName, Toast.LENGTH_SHORT).show();
         userParseQuery.whereEqualTo("username", activityName);
         userParseQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {
-                    Toast.makeText(getContext(), objects.get("actuallocation").toString(), Toast.LENGTH_SHORT).show();
+                    if (objects.size()>0){
+                        for (ParseUser user:objects){
+                            tvPhnNoTeacher.setText(user.get("Phone").toString());
+                            tvEmailTeacher.setText(user.get("email")+"");
+                            tvWebsiteTeacher.setText(user.get("website").toString());
+                        }
+                        BottomSheetInflater();
+
+                    }
                 }
+
             }
         });
     }
@@ -179,6 +198,7 @@ public class SearchTeachersFragment extends Fragment {
         tvPhnNoTeacher = view.findViewById(R.id.tvPhnNoTeacher);
         tvQualificationTeacher = view.findViewById(R.id.tvQualificationTeacher);
         tvSubOfferedTeacher = view.findViewById(R.id.tvSubOfferedTeacher);
+        tvWebsiteTeacher=view.findViewById(R.id.tvWebsiteTeacher);
 
 
     }
