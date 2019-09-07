@@ -20,8 +20,8 @@ import java.util.ArrayList;
 public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
     Context context;
     ArrayList<ModelClassDemoSearchTeacher> menuList;
-    private OnItemLongClickListener mItemLongClickListener;
-    private OnItemClickListener mItemClickListener;
+    public OnItemLongClickListener mItemLongClickListener;
+    public OnItemClickListener mItemClickListener;
 
 
     public CustomAdapterRcvSearchTeacher(Context context, ArrayList<ModelClassDemoSearchTeacher> menuList) {
@@ -74,10 +74,9 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
         this.mItemClickListener = mItemClickListener;
     }
 
-    /*void setOnItemLongClickListener(final OnItemLongClickListener mItemLongClickListener) {
+    void setOnItemLongClickListener(final OnItemLongClickListener mItemLongClickListener) {
         this.mItemLongClickListener = mItemLongClickListener;
     }
-*/
     private ModelClassDemoSearchTeacher getItem(int position) {
         return menuList.get(position);
     }
@@ -115,14 +114,14 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
                 }
             });
 
-            /*itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
                     mItemLongClickListener.onItemLongClick(itemView, getAdapterPosition(), menuList);
 
                     return true;
                 }
-            });*/
+            });
 
         }
     }

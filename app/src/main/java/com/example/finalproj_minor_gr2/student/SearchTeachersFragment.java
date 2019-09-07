@@ -22,8 +22,10 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.libizo.CustomEditText;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
@@ -45,11 +47,12 @@ public class SearchTeachersFragment extends Fragment {
     MaterialSpinner spinnerLevelTeacherSearchTeacher;
     String[] levelTeacherSearchTeacher = {"Select level", "Primary School", "High School", "Higher Secondary School", "Btech", "BCA"};
     String seletedLevel = "";
-    boolean isValidPin = false, isValidLevel = false;
+    boolean isValidPin = false, isValidLevel = false, isNotSaved = false;
     ArrayList<ModelClassDemoSearchTeacher> activityList = new ArrayList<>();
     RecyclerView rcv;
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
+    String name, phone;
 
     public SearchTeachersFragment() {
         // Required empty public constructor
@@ -84,13 +87,37 @@ public class SearchTeachersFragment extends Fragment {
                 ParseFetchData(menulist.get(position).getActivityName());
             }
         });
+
+
         buttonBottomSheetCancelTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 bottomSheetCoordinatorLayout.setVisibility(View.GONE);
             }
         });
+        buttonBottomSheetSaveTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    ParseUser parseUser = ParseUser.getCurrentUser();
+                    ParseObject parseObject = new ParseObject("SavedData");
+                    parseObject.put("username", ParseUser.getCurrentUser() + "");
+                    parseObject.put("type", parseUser.get("Regtype") + "");
+                    parseObject.put("pincode", parseUser.get("pincode") + "");
+                    parseObject.put("Location", parseUser.get("actuallocation") + "");
+                    parseObject.put("Phone", parseUser.get("Phone") + "");
+                    parseObject.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                FancyToast.makeText(getContext(), "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+                            }
+                        }
+                    });
 
+
+
+            }
+        });
 
         searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +159,7 @@ public class SearchTeachersFragment extends Fragment {
 
     }
 
-    private void ParseFetchData(String activityName) {
+    private void ParseFetchData(final String activityName) {
         ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
         Toast.makeText(getContext(), activityName, Toast.LENGTH_SHORT).show();
         userParseQuery.whereEqualTo("username", activityName);
