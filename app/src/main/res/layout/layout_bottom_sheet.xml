@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-
+        android:padding="5dp"
 
         android:orientation="vertical">
 
@@ -37,6 +37,7 @@
             android:id="@+id/tvDescTeachers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/bubblegum_sans"
             android:textSize="12sp" />
 
 
@@ -115,13 +116,15 @@
 
         <Button
             android:id="@+id/buttonBottomSheetTeacher"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
 android:background="@drawable/shape_btn_2"            android:foreground="?attr/selectableItemBackground"
             android:text="Save"
 
             android:textColor="#fff" />
+
+
             <Button
                 android:id="@+id/buttonBottomSheetCancelTeacher"
                 android:layout_width="152dp"

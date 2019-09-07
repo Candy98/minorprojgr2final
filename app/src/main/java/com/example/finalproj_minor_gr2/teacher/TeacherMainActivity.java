@@ -14,7 +14,7 @@ import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class TeacherMainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText etUsernameTeacher, etCourseofferedTeacher, etLocationTeacher, etDescTeacher;
+    EditText etUsernameTeacher, etCourseofferedTeacher, etLocationTeacher, etDescTeacher, etQualTeacher;
     Button updateTeachersInfo;
 
 
@@ -30,6 +30,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         etLocationTeacher.setText(parseUser.get("actuallocation") + "");
         etDescTeacher.setText(parseUser.get("description") + "");
         etCourseofferedTeacher.setText(parseUser.get("courseoffered") + "");
+        etQualTeacher.setText(parseUser.get("qualification") + "");
 
         updateTeachersInfo.setOnClickListener(this);
 
@@ -43,6 +44,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         etLocationTeacher = findViewById(R.id.etLocationTeacher);
         etDescTeacher = findViewById(R.id.etDescTeacher);
         updateTeachersInfo = findViewById(R.id.updateTeachersInfo);
+        etQualTeacher = findViewById(R.id.etQualTeacher);
 
     }
 
@@ -54,6 +56,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         parseUser.put("courseoffered", etCourseofferedTeacher.getText().toString());
         parseUser.put("actuallocation", etLocationTeacher.getText().toString());
         parseUser.put("description", etDescTeacher.getText().toString());
+        parseUser.put("qualification", etQualTeacher.getText().toString());
 
 
         parseUser.saveInBackground(new SaveCallback() {

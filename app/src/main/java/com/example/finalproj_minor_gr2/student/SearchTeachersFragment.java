@@ -40,7 +40,7 @@ public class SearchTeachersFragment extends Fragment {
     LinearLayout bottomSheetTeachers;
     Button buttonBottomSheetSaveTeacher, buttonBottomSheetCancelTeacher;
 
-    TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher,tvWebsiteTeacher;
+    TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
     Button searchTeacherBtn;
     MaterialSpinner spinnerLevelTeacherSearchTeacher;
     String[] levelTeacherSearchTeacher = {"Select level", "Primary School", "High School", "Higher Secondary School", "Btech", "BCA"};
@@ -140,13 +140,14 @@ public class SearchTeachersFragment extends Fragment {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {
-                    if (objects.size()>0){
-                        for (ParseUser user:objects){
+                    if (objects.size() > 0) {
+                        for (ParseUser user : objects) {
                             tvPhnNoTeacher.setText(user.get("Phone").toString());
-                            tvEmailTeacher.setText(user.get("email")+"");
+                            tvEmailTeacher.setText(user.get("email") + "");
                             tvWebsiteTeacher.setText(user.get("website").toString());
                             tvDescTeachers.setText(user.get("description").toString());
                             tvSubOfferedTeacher.setText(user.get("courseoffered").toString());
+                            tvQualificationTeacher.setText(user.get("qualification").toString());
                         }
                         BottomSheetInflater();
 
@@ -156,13 +157,13 @@ public class SearchTeachersFragment extends Fragment {
             }
         });
     }
+
     private void BottomSheetInflater() {
         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetCoordinatorLayout.setVisibility(View.VISIBLE);
 
 
     }
-
 
 
     private void LvelValidator(String seletedLevel) {
@@ -200,7 +201,7 @@ public class SearchTeachersFragment extends Fragment {
         tvPhnNoTeacher = view.findViewById(R.id.tvPhnNoTeacher);
         tvQualificationTeacher = view.findViewById(R.id.tvQualificationTeacher);
         tvSubOfferedTeacher = view.findViewById(R.id.tvSubOfferedTeacher);
-        tvWebsiteTeacher=view.findViewById(R.id.tvWebsiteTeacher);
+        tvWebsiteTeacher = view.findViewById(R.id.tvWebsiteTeacher);
 
 
     }
