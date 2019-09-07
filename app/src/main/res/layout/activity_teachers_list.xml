@@ -1,9 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.TeachersListActivity">
+    android:orientation="vertical"
+    tools:context=".student.TeachersListActivity"
+    android:background="@drawable/bg_fragment"
+    android:gravity="center"
+    >
+    <com.libizo.CustomEditText
+        android:id="@+id/etPincodeSearchCollege"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Username"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:fontFamily="@font/bubblegum_sans"
+        app:libIZO_setBackgroundColor="#81B2EBF2"
+        app:libIZO_clearIconTint="#2196F3"
+        app:libIZO_setBorderColor="#4FC3F7"
+        app:libIZO_setBorderView="true"
+        app:libIZO_setClearIconVisible="true"
+        app:libIZO_setCornerRadius="4dp"
+        app:libIZO_setPrefixTextColor="#1976D2"
+        app:libIZO_setStrokeWidth="2dp" />
+    <com.libizo.CustomEditText
+        android:id="@+id/etDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Description"
+        android:textColor="#000000"
+        android:fontFamily="@font/bubblegum_sans"
+        app:libIZO_setBackgroundColor="#81B2EBF2"
+        app:libIZO_clearIconTint="#2196F3"
+        app:libIZO_setBorderColor="#4FC3F7"
+        app:libIZO_setBorderView="true"
+        app:libIZO_setClearIconVisible="true"
+        app:libIZO_setCornerRadius="4dp"
+        app:libIZO_setPrefixTextColor="#1976D2"
+        app:libIZO_setStrokeWidth="2dp" />
+    <com.libizo.CustomEditText
+        android:id="@+id/etCourseoffered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Course offered"
+        android:textColor="#000000"
+        android:fontFamily="@font/bubblegum_sans"
+        app:libIZO_setBackgroundColor="#81B2EBF2"
+        app:libIZO_clearIconTint="#2196F3"
+        app:libIZO_setBorderColor="#4FC3F7"
+        app:libIZO_setBorderView="true"
+        app:libIZO_setClearIconVisible="true"
+        app:libIZO_setCornerRadius="4dp"
+        app:libIZO_setPrefixTextColor="#1976D2"
+        app:libIZO_setStrokeWidth="2dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.libizo.CustomEditText
+        android:id="@+id/etLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Actual Location"
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:fontFamily="@font/bubblegum_sans"
+        app:libIZO_setBackgroundColor="#81B2EBF2"
+        app:libIZO_clearIconTint="#2196F3"
+        app:libIZO_setBorderColor="#4FC3F7"
+        app:libIZO_setBorderView="true"
+        app:libIZO_setClearIconVisible="true"
+        app:libIZO_setCornerRadius="4dp"
+        app:libIZO_setPrefixTextColor="#1976D2"
+        app:libIZO_setStrokeWidth="2dp" />
+
+
+
+
+
+
+
+</LinearLayout>

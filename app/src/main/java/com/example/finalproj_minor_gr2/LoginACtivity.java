@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproj_minor_gr2.student.StudentProfileActivity;
+import com.example.finalproj_minor_gr2.teacher.TeacherMainActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -109,6 +110,10 @@ public class LoginACtivity extends AppCompatActivity {
             case "Student":{
                 startActivity(new Intent(LoginACtivity.this, StudentProfileActivity.class));
 
+            }
+            break;
+            case "Teacher":{
+                startActivity(new Intent(LoginACtivity.this, TeacherMainActivity.class));
             }
             break;
             default: break;
