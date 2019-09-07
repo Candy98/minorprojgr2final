@@ -8,7 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.finalproj_minor_gr2.R;
+import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class TeacherMainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etUsernameTeacher, etCourseofferedTeacher, etLocationTeacher, etDescTeacher;
@@ -20,45 +23,19 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_main);
         BindViews();
-        final ParseUser parseUser=ParseUser.getCurrentUser();
+        final ParseUser parseUser = ParseUser.getCurrentUser();
         updateTeachersInfo.setOnClickListener(this);
-        if (parseUser.get("username") == null) {
-            etUsernameTeacher.setText("");
-        } else {
-            etUsernameTeacher.setText(parseUser.get("username") + "");
+        etUsernameTeacher.setText(parseUser.get("username") + "");
 
-        }
-        if (parseUser.get("courseoffered") == null) {
-            etCourseofferedTeacher.setText("");
+        etLocationTeacher.setText(parseUser.get("actuallocation") + "");
+        etDescTeacher.setText(parseUser.get("description") + "");
+        etCourseofferedTeacher.setText(parseUser.get("courseoffered") + "");
 
-        } else {
-            etCourseofferedTeacher.setText(parseUser.get("courseoffered") + "");
-
-        }
-        if (parseUser.get("actuallocation") == null) {
-            etLocationTeacher.setText("");
-
-        } else {
-            etLocationTeacher.setText(parseUser.get("actuallocation") + "");
-
-        }
-        if (parseUser.get("Hobby") == null) {
-            etHobby.setText("");
-
-        } else {
-            etHobby.setText(parseUser.get("Hobby") + "");
-
-        }
-        if (parseUser.get("Favouritesport") == null) {
-            etFavSport.setText("");
-
-        } else {
-            etFavSport.setText(parseUser.get("Favouritesport") + "");
-
-        }
+        updateTeachersInfo.setOnClickListener(this);
 
 
     }
+
 
     private void BindViews() {
         etUsernameTeacher = findViewById(R.id.etUsernameTeacher);
@@ -71,7 +48,29 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
+        final ParseUser parseUser = ParseUser.getCurrentUser();
 
+        parseUser.put("username", etUsernameTeacher.getText().toString());
+        parseUser.put("courseoffered", etCourseofferedTeacher.getText().toString());
+        parseUser.put("actuallocation", etLocationTeacher.getText().toString());
+        parseUser.put("description", etDescTeacher.getText().toString());
+
+
+        parseUser.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    FancyToast.makeText(getApplicationContext(), "Data Updated ", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+
+                } else {
+                    FancyToast.makeText(getApplicationContext(), e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+
+                }
+            }
+        });
 
     }
+
 }
+
+

@@ -145,6 +145,8 @@ public class SearchTeachersFragment extends Fragment {
                             tvPhnNoTeacher.setText(user.get("Phone").toString());
                             tvEmailTeacher.setText(user.get("email")+"");
                             tvWebsiteTeacher.setText(user.get("website").toString());
+                            tvDescTeachers.setText(user.get("description").toString());
+                            tvSubOfferedTeacher.setText(user.get("courseoffered").toString());
                         }
                         BottomSheetInflater();
 
