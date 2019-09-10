@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
@@ -52,7 +51,7 @@ public class SearchTeachersFragment extends Fragment {
     RecyclerView rcv;
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
-    String name, phone;
+    String name, type;
 
     public SearchTeachersFragment() {
         // Required empty public constructor
@@ -98,22 +97,22 @@ public class SearchTeachersFragment extends Fragment {
         buttonBottomSheetSaveTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    ParseUser parseUser = ParseUser.getCurrentUser();
-                    ParseObject parseObject = new ParseObject("SavedData");
-                    parseObject.put("username", ParseUser.getCurrentUser() + "");
-                    parseObject.put("type", parseUser.get("Regtype") + "");
-                    parseObject.put("pincode", parseUser.get("pincode") + "");
-                    parseObject.put("Location", parseUser.get("actuallocation") + "");
-                    parseObject.put("Phone", parseUser.get("Phone") + "");
-                    parseObject.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                FancyToast.makeText(getContext(), "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-                            }
+                ParseUser parseUser = ParseUser.getCurrentUser();
+                ParseObject parseObject = new ParseObject("SavedData");
+                parseObject.put("username", parseUser.getUsername() + "");
+                parseObject.put("savedName", name);
+                parseObject.put("type", "Teacher");
+                parseObject.put("pincode", parseUser.get("pincode") + "");
+                parseObject.put("Location", parseUser.get("actuallocation") + "");
+                parseObject.put("Phone", parseUser.get("Phone") + "");
+                parseObject.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            FancyToast.makeText(getContext(), "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                         }
-                    });
-
+                    }
+                });
 
 
             }
@@ -161,7 +160,8 @@ public class SearchTeachersFragment extends Fragment {
 
     private void ParseFetchData(final String activityName) {
         ParseQuery<ParseUser> userParseQuery = ParseUser.getQuery();
-        Toast.makeText(getContext(), activityName, Toast.LENGTH_SHORT).show();
+        name = activityName;
+
         userParseQuery.whereEqualTo("username", activityName);
         userParseQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
@@ -169,12 +169,12 @@ public class SearchTeachersFragment extends Fragment {
                 if (e == null) {
                     if (objects.size() > 0) {
                         for (ParseUser user : objects) {
-                            tvPhnNoTeacher.setText(user.get("Phone").toString());
+                            tvPhnNoTeacher.setText(user.get("Phone") + "");
                             tvEmailTeacher.setText(user.get("email") + "");
-                            tvWebsiteTeacher.setText(user.get("website").toString());
-                            tvDescTeachers.setText(user.get("description").toString());
-                            tvSubOfferedTeacher.setText(user.get("courseoffered").toString());
-                            tvQualificationTeacher.setText(user.get("qualification").toString());
+                            tvWebsiteTeacher.setText(user.get("website") + "");
+                            tvDescTeachers.setText(user.get("description") + "");
+                            tvSubOfferedTeacher.setText(user.get("courseoffered") + "");
+                            tvQualificationTeacher.setText(user.get("qualification") + "");
                         }
                         BottomSheetInflater();
 

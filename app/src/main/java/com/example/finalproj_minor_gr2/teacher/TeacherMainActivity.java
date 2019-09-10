@@ -44,6 +44,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         etLocationTeacher = findViewById(R.id.etLocationTeacher);
         etDescTeacher = findViewById(R.id.etDescTeacher);
         updateTeachersInfo = findViewById(R.id.updateTeachersInfo);
+
         etQualTeacher = findViewById(R.id.etQualTeacher);
 
     }
@@ -57,6 +58,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
         parseUser.put("actuallocation", etLocationTeacher.getText().toString());
         parseUser.put("description", etDescTeacher.getText().toString());
         parseUser.put("qualification", etQualTeacher.getText().toString());
+
 
 
         parseUser.saveInBackground(new SaveCallback() {

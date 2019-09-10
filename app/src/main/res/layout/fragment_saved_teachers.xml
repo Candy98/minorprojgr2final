@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student.SavedTeachersFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".student.SavedTeachersFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:fontFamily="@font/bubblegum_sans"
+        android:text="Saved teacher"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="35dp"
+        ></TextView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/rcvSavedTeachers"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/rcv_searched_teachers_list"
 
-</FrameLayout>
+        ></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
