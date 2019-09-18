@@ -1,16 +1,13 @@
 package com.example.finalproj_minor_gr2.student;
 
-
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproj_minor_gr2.Adapters.CustomAdapterRcvSearchTeacher;
@@ -30,10 +27,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SearchTeachersFragment extends Fragment {
+public class StudSearchTeacherActivity extends AppCompatActivity {
     CustomEditText customEditText;
     String unameChecker, getUnameCheckerNext;
     BottomSheetBehavior behavior;
@@ -53,17 +47,12 @@ public class SearchTeachersFragment extends Fragment {
     ModelClassDemoSearchTeacher modelClassDemo;
     String name, type;
 
-    public SearchTeachersFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search_teachers, container, false);
-        ViewBinder(view);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_stud_search_teacher);
+        ViewBinder();
 
         behavior = BottomSheetBehavior.from(bottomSheetTeachers);
         behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -109,7 +98,9 @@ public class SearchTeachersFragment extends Fragment {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
-                            FancyToast.makeText(getContext(), "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+                            FancyToast.makeText(StudSearchTeacherActivity.this, "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+
+
                         }
                     }
                 });
@@ -154,8 +145,6 @@ public class SearchTeachersFragment extends Fragment {
 
             }
         });
-        return view;
-
     }
 
     private void ParseFetchData(final String activityName) {
@@ -195,7 +184,7 @@ public class SearchTeachersFragment extends Fragment {
 
     private void LvelValidator(String seletedLevel) {
         if (seletedLevel.equals("")) {
-            FancyToast.makeText(getContext(), "Please select teacher's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(StudSearchTeacherActivity.this, "Please select teacher's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidLevel = false;
         } else {
             isValidLevel = true;
@@ -204,7 +193,7 @@ public class SearchTeachersFragment extends Fragment {
 
     private void PinValidator(String pin) {
         if (pin.equals("")) {
-            FancyToast.makeText(getContext(), "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(StudSearchTeacherActivity.this, "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidPin = false;
         } else {
             isValidPin = true;
@@ -213,25 +202,24 @@ public class SearchTeachersFragment extends Fragment {
 
     }
 
-    private void ViewBinder(View view) {
-        customEditText = view.findViewById(R.id.etPincodeSearchTeacher);
-        searchTeacherBtn = view.findViewById(R.id.searchTeacherBtn);
-        spinnerLevelTeacherSearchTeacher = view.findViewById(R.id.spinnerLevelTeacherSearchTeacher);
-        rcv = view.findViewById(R.id.rcvFragmentSearchTeachers);
-        rcvAdaptor = new CustomAdapterRcvSearchTeacher(view.getContext(), activityList);
-        bottomSheetTeachers = view.findViewById(R.id.bottom_sheet_lin_layout_teachers);
-        bottomSheetCoordinatorLayout = view.findViewById(R.id.bottom_sheet_teachers);
-        buttonBottomSheetSaveTeacher = view.findViewById(R.id.buttonBottomSheetTeacher);
-        buttonBottomSheetCancelTeacher = view.findViewById(R.id.buttonBottomSheetCancelTeacher);
-        tvDescTeachers = view.findViewById(R.id.tvDescTeachers);
-        tvEmailTeacher = view.findViewById(R.id.tvEmailTeacher);
-        tvPhnNoTeacher = view.findViewById(R.id.tvPhnNoTeacher);
-        tvQualificationTeacher = view.findViewById(R.id.tvQualificationTeacher);
-        tvSubOfferedTeacher = view.findViewById(R.id.tvSubOfferedTeacher);
-        tvWebsiteTeacher = view.findViewById(R.id.tvWebsiteTeacher);
+    private void ViewBinder() {
+        customEditText = findViewById(R.id.etPincodeSearchTeacher);
+        searchTeacherBtn = findViewById(R.id.searchTeacherBtn);
+        spinnerLevelTeacherSearchTeacher = findViewById(R.id.spinnerLevelTeacherSearchTeacher);
+        rcv = findViewById(R.id.rcvFragmentSearchTeachers);
+        rcvAdaptor = new CustomAdapterRcvSearchTeacher(StudSearchTeacherActivity.this, activityList);
+        bottomSheetTeachers = findViewById(R.id.bottom_sheet_lin_layout_teachers);
+        bottomSheetCoordinatorLayout = findViewById(R.id.bottom_sheet_teachers);
+        buttonBottomSheetSaveTeacher = findViewById(R.id.buttonBottomSheetTeacher);
+        buttonBottomSheetCancelTeacher = findViewById(R.id.buttonBottomSheetCancelTeacher);
+        tvDescTeachers = findViewById(R.id.tvDescTeachers);
+        tvEmailTeacher = findViewById(R.id.tvEmailTeacher);
+        tvPhnNoTeacher = findViewById(R.id.tvPhnNoTeacher);
+        tvQualificationTeacher = findViewById(R.id.tvQualificationTeacher);
+        tvSubOfferedTeacher = findViewById(R.id.tvSubOfferedTeacher);
+        tvWebsiteTeacher = findViewById(R.id.tvWebsiteTeacher);
 
 
     }
-
 
 }

@@ -1,14 +1,11 @@
 package com.example.finalproj_minor_gr2.student;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproj_minor_gr2.Adapters.CustomAdapterRcvSearchTeacher;
 import com.example.finalproj_minor_gr2.R;
@@ -24,10 +21,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SearchCollegeFragment extends Fragment {
+public class SearchCollegeActivity extends AppCompatActivity {
     CustomEditText customEditText;
     String unameChecker, getUnameCheckerNext;
     Button searchCollegeBtn;
@@ -39,18 +33,11 @@ public class SearchCollegeFragment extends Fragment {
     RecyclerView rcv;
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
-
-    public SearchCollegeFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search_college, container, false);
-        ViewBinder(view);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_college);
+        ViewBinder();
         spinnerLevelTeacherSearchCollege.setItems(levelTeacherSearchCollege);
         spinnerLevelTeacherSearchCollege.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
@@ -101,13 +88,12 @@ public class SearchCollegeFragment extends Fragment {
 
             }
         });
-        return view;
+
 
     }
-
     private void LvelValidator(String seletedLevel) {
         if (seletedLevel.equals("")) {
-            FancyToast.makeText(getContext(), "Please select college's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(SearchCollegeActivity.this, "Please select college's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidLevel = false;
         } else {
             isValidLevel = true;
@@ -116,7 +102,7 @@ public class SearchCollegeFragment extends Fragment {
 
     private void PinValidator(String pin) {
         if (pin.equals("")) {
-            FancyToast.makeText(getContext(), "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(SearchCollegeActivity.this, "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidPin = false;
         } else {
             isValidPin = true;
@@ -125,14 +111,13 @@ public class SearchCollegeFragment extends Fragment {
 
     }
 
-    private void ViewBinder(View view) {
-        customEditText = view.findViewById(R.id.etPincodeSearchCollege);
-        searchCollegeBtn = view.findViewById(R.id.searchCollegeBtn);
-        spinnerLevelTeacherSearchCollege = view.findViewById(R.id.spinnerLevelTeacherSearchCollege);
-        rcv = view.findViewById(R.id.rcvFragmentSearchCollege);
-        rcvAdaptor = new CustomAdapterRcvSearchTeacher(view.getContext(), activityList);
+    private void ViewBinder() {
+        customEditText = findViewById(R.id.etPincodeSearchCollege);
+        searchCollegeBtn = findViewById(R.id.searchCollegeBtn);
+        spinnerLevelTeacherSearchCollege = findViewById(R.id.spinnerLevelTeacherSearchCollege);
+        rcv = findViewById(R.id.rcvFragmentSearchCollege);
+        rcvAdaptor = new CustomAdapterRcvSearchTeacher(SearchCollegeActivity.this, activityList);
 
 
     }
-
 }

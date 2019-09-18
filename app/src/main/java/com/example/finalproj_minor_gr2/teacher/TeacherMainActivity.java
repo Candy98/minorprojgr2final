@@ -20,6 +20,8 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_main);
         BindViews();
@@ -39,6 +41,7 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
 
 
     private void BindViews() {
+
         etUsernameTeacher = findViewById(R.id.etUsernameTeacher);
         etCourseofferedTeacher = findViewById(R.id.etCourseofferedTeacher);
         etLocationTeacher = findViewById(R.id.etLocationTeacher);
@@ -47,18 +50,19 @@ public class TeacherMainActivity extends AppCompatActivity implements View.OnCli
 
         etQualTeacher = findViewById(R.id.etQualTeacher);
 
+
     }
 
     @Override
     public void onClick(View view) {
         final ParseUser parseUser = ParseUser.getCurrentUser();
 
+
         parseUser.put("username", etUsernameTeacher.getText().toString());
         parseUser.put("courseoffered", etCourseofferedTeacher.getText().toString());
         parseUser.put("actuallocation", etLocationTeacher.getText().toString());
         parseUser.put("description", etDescTeacher.getText().toString());
         parseUser.put("qualification", etQualTeacher.getText().toString());
-
 
 
         parseUser.saveInBackground(new SaveCallback() {

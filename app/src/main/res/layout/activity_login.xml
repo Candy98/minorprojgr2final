@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginACtivity"
-    android:id="@+id/logView">
+    android:id="@+id/logView"
+    android:theme="@style/AppTheme"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"

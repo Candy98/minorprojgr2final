@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finalproj_minor_gr2.student.SearchSchoolActivity;
+import com.example.finalproj_minor_gr2.student.StudSearchTeacherActivity;
 import com.example.finalproj_minor_gr2.student.StudentProfileActivity;
 import com.example.finalproj_minor_gr2.teacher.TeacherMainActivity;
 import com.parse.LogInCallback;
