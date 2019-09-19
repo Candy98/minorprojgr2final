@@ -5,11 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgprof3"
     tools:context=".student.StudentProfEditActivity"
 
-    android:gravity="center"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/school"
+        ></ImageView>
+
 
     <com.libizo.CustomEditText
         android:id="@+id/etUsernameStud"
@@ -20,8 +24,8 @@
         android:textColor="#000000"
         android:singleLine="false"
         android:fontFamily="@font/bubblegum_sans"
-        app:libIZO_setBackgroundColor="#F4FF81"
-        app:libIZO_clearIconTint="#F57F17"
+        app:libIZO_setBackgroundColor="#00B71C1C"
+        app:libIZO_clearIconTint="#FF6F00"
         app:libIZO_setBorderColor="#F57F17"
         app:libIZO_setBorderView="true"
         app:libIZO_setClearIconVisible="true"
@@ -38,7 +42,7 @@
         android:singleLine="true"
         android:textColor="#000000"
         android:fontFamily="@font/bubblegum_sans"
-        app:libIZO_setBackgroundColor="#F4FF81"
+        app:libIZO_setBackgroundColor="#00B71C1C"
         app:libIZO_clearIconTint="#F57F17"
         app:libIZO_setBorderColor="#F57F17"
         app:libIZO_setBorderView="true"
@@ -56,7 +60,7 @@
         android:textColor="#000000"
         android:singleLine="true"
         android:fontFamily="@font/bubblegum_sans"
-        app:libIZO_setBackgroundColor="#F4FF81"
+        app:libIZO_setBackgroundColor="#00B71C1C"
         app:libIZO_clearIconTint="#F57F17"
         app:libIZO_setBorderColor="#F57F17"
         app:libIZO_setBorderView="true"
@@ -67,14 +71,14 @@
     <com.libizo.CustomEditText
         android:id="@+id/etDescStud"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
         android:hint="Description"
         android:padding="5dp"
         android:scrollbars="vertical"
         android:textColor="#000000"
         android:fontFamily="@font/bubblegum_sans"
-        app:libIZO_setBackgroundColor="#F4FF81"
+        app:libIZO_setBackgroundColor="#00B71C1C"
         app:libIZO_clearIconTint="#F57F17"
         app:libIZO_setBorderColor="#F57F17"
         app:libIZO_setBorderView="true"
@@ -92,7 +96,7 @@
         android:scrollbars="vertical"
         android:textColor="#000000"
         android:fontFamily="@font/bubblegum_sans"
-        app:libIZO_setBackgroundColor="#F4FF81"
+        app:libIZO_setBackgroundColor="#00B71C1C"
         app:libIZO_clearIconTint="#F57F17"
         app:libIZO_setBorderColor="#F57F17"
         app:libIZO_setClearIconVisible="true"
@@ -111,6 +115,7 @@
         android:layout_marginTop="20dp"
 
         ></Button>
+
 
 
 
