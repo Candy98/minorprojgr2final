@@ -31,6 +31,7 @@
                 android:weightSum="3"
                 >
                 <LinearLayout
+                    android:id="@+id/stud_prof"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -60,6 +61,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/stud_teacher"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -89,6 +91,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/stud_school"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -129,6 +132,7 @@
                 android:weightSum="3"
                 >
                 <LinearLayout
+                    android:id="@+id/stud_college"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -159,6 +163,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/stud_saved"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -189,6 +194,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/stud_logout"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -227,6 +233,7 @@
             android:weightSum="3"
             >
             <LinearLayout
+                android:id="@+id/stud_aboutus"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"

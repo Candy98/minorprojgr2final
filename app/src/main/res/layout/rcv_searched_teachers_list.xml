@@ -3,15 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:layout_margin="20dp"
-    android:background="@drawable/rcv_shape">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    android:background="@drawable/rcv_shape"
+    android:layout_margin="8dp">
+<com.google.android.material.card.MaterialCardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
-        >
+    android:layout_width="match_parent"
+    android:elevation="5dp"
+    android:fadingEdgeLength="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardMaxElevation="10dp"
+app:cardBackgroundColor="#FF1744"
+    android:layout_height="match_parent" >
 
-        <TextView
+    <TextView
             android:id="@+id/tvRcvTeacherUname"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
@@ -19,7 +24,7 @@
             android:layout_marginLeft="30dp"
             android:textSize="24sp"
             android:padding="2dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="100dp"
             android:text="Username"
             ></TextView>
 
@@ -31,12 +36,12 @@
             android:layout_marginLeft="30dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp"
-            android:textSize="19sp"
+            android:textSize="27sp"
             android:padding="2dp"
             android:text="Address"
             android:fontFamily="@font/bubblegum_sans"
             ></TextView>
 
 
-    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>
 </LinearLayout>

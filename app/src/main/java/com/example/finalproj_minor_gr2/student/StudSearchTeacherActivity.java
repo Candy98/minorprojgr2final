@@ -81,6 +81,8 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 bottomSheetCoordinatorLayout.setVisibility(View.GONE);
+                customEditText.setVisibility(View.VISIBLE);
+                spinnerLevelTeacherSearchTeacher.setVisibility(View.VISIBLE);
             }
         });
         buttonBottomSheetSaveTeacher.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +116,8 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
             public void onClick(final View view) {
                 PinValidator(customEditText.getText().toString());
                 LvelValidator(seletedLevel);
+                customEditText.setVisibility(View.GONE);
+                spinnerLevelTeacherSearchTeacher.setVisibility(View.GONE);
                 if (isValidLevel && isValidPin) {
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
                     query.whereEqualTo("Regtype", "Teacher");

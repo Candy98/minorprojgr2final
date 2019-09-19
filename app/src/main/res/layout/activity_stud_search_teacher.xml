@@ -14,8 +14,20 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.9"
+        android:layout_height="100dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/sch_bg"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+
+            ></ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -33,9 +45,9 @@
                 android:inputType="phone"
                 android:fontFamily="@font/bubblegum_sans"
 
-                app:libIZO_setBackgroundColor="#81B2EBF2"
-                app:libIZO_clearIconTint="#2196F3"
-                app:libIZO_setBorderColor="#4FC3F7"
+                app:libIZO_setBackgroundColor="#00C6FF00"
+                app:libIZO_clearIconTint="#D0FFFF00"
+                app:libIZO_setBorderColor="#FF1744"
                 app:libIZO_setBorderView="true"
                 app:libIZO_setClearIconVisible="true"
                 app:libIZO_setCornerRadius="4dp"
@@ -51,8 +63,8 @@
 
         <com.jaredrummler.materialspinner.MaterialSpinner
             android:id="@+id/spinnerLevelTeacherSearchTeacher"
-            app:ms_arrow_tint="#1976D2"
-            app:ms_background_color="#6AB2EBF2"
+            app:ms_arrow_tint="#FF1744"
+            app:ms_background_color="#07E53935"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bubblegum_sans"
@@ -81,7 +93,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="250dp"
         android:layout_weight="3"
         android:orientation="vertical">
 
