@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".student.SearchSchoolFragment">
+    android:background="@drawable/schoolbg"
+    tools:context=".student.SearchCollegeActivity">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -51,7 +52,7 @@
                     android:textColor="#000000"
                     android:fontFamily="@font/bubblegum_sans"
 
-                    app:libIZO_setBackgroundColor="#81B2EBF2"
+                    app:libIZO_setBackgroundColor="#EEFF41"
                     app:libIZO_clearIconTint="#2196F3"
                     app:libIZO_setBorderColor="#4FC3F7"
                     app:libIZO_setBorderView="true"
@@ -70,7 +71,7 @@
             <com.jaredrummler.materialspinner.MaterialSpinner
                 android:id="@+id/spinnerLevelTeacherSearchCollege"
                 app:ms_arrow_tint="#1976D2"
-                app:ms_background_color="#6AB2EBF2"
+                app:ms_background_color="#FFFF00"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bubblegum_sans"

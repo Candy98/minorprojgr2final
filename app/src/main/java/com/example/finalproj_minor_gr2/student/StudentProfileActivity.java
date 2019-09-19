@@ -14,7 +14,7 @@ import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class StudentProfileActivity extends AppCompatActivity {
-    LinearLayout stud_prof, stud_teacher;
+    LinearLayout stud_prof, stud_teacher,stud_school,stud_college;
     PrettyDialog prettyDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,18 @@ public class StudentProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StudentProfileActivity.this, StudSearchTeacherActivity.class));
+            }
+        });
+        stud_college.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentProfileActivity.this,SearchCollegeActivity.class));
+            }
+        });
+        stud_school.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentProfileActivity.this,SearchSchoolActivity.class));
             }
         });
         stud_prof.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +101,8 @@ public class StudentProfileActivity extends AppCompatActivity {
     private void BindViews() {
         stud_prof = findViewById(R.id.stud_prof);
         stud_teacher = findViewById(R.id.stud_teacher);
+        stud_school=findViewById(R.id.stud_school);
+        stud_college=findViewById(R.id.stud_college);
     }
 
 

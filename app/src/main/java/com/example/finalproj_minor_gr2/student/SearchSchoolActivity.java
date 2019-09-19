@@ -3,6 +3,7 @@ package com.example.finalproj_minor_gr2.student;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ public class SearchSchoolActivity extends AppCompatActivity {
     String unameChecker, getUnameCheckerNext;
     Button searchSchoolBtn;
     MaterialSpinner spinnerLevelTeacherSearchSchool;
-    String[] levelTeacherSearchSchool = {"Select level", "Primary", "High", "Higher Secondary"};
+    String[] levelTeacherSearchSchool = {"Select level", "Primary School", "High School", "Higher Secondary School"};
     String seletedLevel = "";
     boolean isValidPin = false, isValidLevel = false;
     ArrayList<ModelClassDemoSearchTeacher> activityList = new ArrayList<>();
@@ -39,12 +40,16 @@ public class SearchSchoolActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_school);
         ViewBinder();
+        modelClassDemo=new ModelClassDemoSearchTeacher();
+        modelClassDemo.setActivityName("Hi");
+        activityList.add(modelClassDemo);
         spinnerLevelTeacherSearchSchool.setItems(levelTeacherSearchSchool);
         spinnerLevelTeacherSearchSchool.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
                 if (position != 0) {
                     seletedLevel = item.toString();
+                    Toast.makeText(SearchSchoolActivity.this, seletedLevel, Toast.LENGTH_SHORT).show();
 
                 } else {
                     seletedLevel = "";

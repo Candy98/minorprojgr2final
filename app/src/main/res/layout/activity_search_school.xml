@@ -8,27 +8,11 @@
     tools:context=".student.SearchSchoolActivity">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bubblegum_sans"
-            android:textSize="26sp"
-            android:text="Search School"
-            android:layout_gravity="center"
-            android:gravity="center"
-            ></TextView>
-
-
-    </LinearLayout>
-    <LinearLayout
+   <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1.6"
-        android:orientation="vertical">
+        android:orientation="vertical"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -115,4 +99,3 @@
 
     </LinearLayout>
 
-</LinearLayout>
