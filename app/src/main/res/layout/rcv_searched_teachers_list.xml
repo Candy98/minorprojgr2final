@@ -13,7 +13,7 @@
     android:fadingEdgeLength="5dp"
     app:cardCornerRadius="10dp"
     app:cardMaxElevation="10dp"
-app:cardBackgroundColor="#FF1744"
+app:cardBackgroundColor="#FF9800"
     android:layout_height="match_parent" >
 
     <TextView

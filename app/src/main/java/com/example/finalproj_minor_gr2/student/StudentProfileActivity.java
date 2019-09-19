@@ -14,7 +14,7 @@ import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class StudentProfileActivity extends AppCompatActivity {
-    LinearLayout stud_prof;
+    LinearLayout stud_prof, stud_teacher;
     PrettyDialog prettyDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,12 @@ public class StudentProfileActivity extends AppCompatActivity {
     }
 
     private void Onclick() {
+        stud_teacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentProfileActivity.this, StudSearchTeacherActivity.class));
+            }
+        });
         stud_prof.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -35,9 +41,9 @@ public class StudentProfileActivity extends AppCompatActivity {
                 prettyDialog = new PrettyDialog(StudentProfileActivity.this);
                 prettyDialog.setTitle("Info")
                         .setMessage("Name :" + (user.getUsername()) + "\n" + "Website: " +
-                                user.get("website") + "\n" +"Description: "+
-                                user.get("description") + "\n" +"Phone: "+
-                                user.get("Phone") + "\n" +"Location: "+
+                                user.get("website") + "\n" + "Description: " +
+                                user.get("description") + "\n" + "Phone: " +
+                                user.get("Phone") + "\n" + "Location: " +
                                 user.get("actuallocation")
 
 
@@ -82,6 +88,7 @@ public class StudentProfileActivity extends AppCompatActivity {
 
     private void BindViews() {
         stud_prof = findViewById(R.id.stud_prof);
+        stud_teacher = findViewById(R.id.stud_teacher);
     }
 
 

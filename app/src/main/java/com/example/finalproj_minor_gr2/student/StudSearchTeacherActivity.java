@@ -21,11 +21,13 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import libs.mjn.prettydialog.PrettyDialog;
+import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class StudSearchTeacherActivity extends AppCompatActivity {
     CustomEditText customEditText;
@@ -34,6 +36,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     CoordinatorLayout bottomSheetCoordinatorLayout;
     LinearLayout bottomSheetTeachers;
     Button buttonBottomSheetSaveTeacher, buttonBottomSheetCancelTeacher;
+    PrettyDialog prettyDialog;
 
     TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
     Button searchTeacherBtn;
@@ -77,47 +80,11 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         });
 
 
-        buttonBottomSheetCancelTeacher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetCoordinatorLayout.setVisibility(View.GONE);
-                customEditText.setVisibility(View.VISIBLE);
-                spinnerLevelTeacherSearchTeacher.setVisibility(View.VISIBLE);
-            }
-        });
-        buttonBottomSheetSaveTeacher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser parseUser = ParseUser.getCurrentUser();
-                ParseObject parseObject = new ParseObject("SavedData");
-                parseObject.put("username", parseUser.getUsername() + "");
-                parseObject.put("savedName", name);
-                parseObject.put("type", "Teacher");
-                parseObject.put("pincode", parseUser.get("pincode") + "");
-                parseObject.put("Location", parseUser.get("actuallocation") + "");
-                parseObject.put("Phone", parseUser.get("Phone") + "");
-                parseObject.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (e == null) {
-                            FancyToast.makeText(StudSearchTeacherActivity.this, "Saved", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-
-
-                        }
-                    }
-                });
-
-
-            }
-        });
-
         searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 PinValidator(customEditText.getText().toString());
                 LvelValidator(seletedLevel);
-                customEditText.setVisibility(View.GONE);
-                spinnerLevelTeacherSearchTeacher.setVisibility(View.GONE);
                 if (isValidLevel && isValidPin) {
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
                     query.whereEqualTo("Regtype", "Teacher");
@@ -162,14 +129,43 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                 if (e == null) {
                     if (objects.size() > 0) {
                         for (ParseUser user : objects) {
-                            tvPhnNoTeacher.setText(user.get("Phone") + "");
-                            tvEmailTeacher.setText(user.get("email") + "");
-                            tvWebsiteTeacher.setText(user.get("website") + "");
-                            tvDescTeachers.setText(user.get("description") + "");
-                            tvSubOfferedTeacher.setText(user.get("courseoffered") + "");
-                            tvQualificationTeacher.setText(user.get("qualification") + "");
+                            prettyDialog = new PrettyDialog(StudSearchTeacherActivity.this);
+                            prettyDialog.setTitle("Info")
+                                    .setMessage("Name :" + (user.getUsername()) + "\n" + "Website: " +
+                                            user.get("website") + "\n" + "Description: " +
+                                            user.get("description") + "\n" + "Phone: " +
+                                            user.get("Phone") + "\n" + "Location: " +
+                                            user.get("actuallocation")).setIcon(R.drawable.full_name_draw)
+                                    .setIconTint(R.color.colorFlower)
+                                    .addButton(
+                                            "Save",                    // button text
+                                            R.color.pdlg_color_white,        // button text color
+                                            R.color.pdlg_color_green,        // button background color
+                                            new PrettyDialogCallback() {        // button OnClick listener
+                                                @Override
+                                                public void onClick() {
+                                                    SaveTeacher();
+                                                }
+                                            }
+                                    )
+
+// Cancel button
+                                    .addButton(
+                                            "Cancel",
+                                            R.color.pdlg_color_white,
+                                            R.color.pdlg_color_red,
+                                            new PrettyDialogCallback() {
+                                                @Override
+                                                public void onClick() {
+                                                    prettyDialog.dismiss();
+                                                    // Dismiss
+                                                }
+                                            }
+                                    )
+                                    .show();
+
+
                         }
-                        BottomSheetInflater();
 
                     }
                 }
@@ -178,11 +174,10 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         });
     }
 
-    private void BottomSheetInflater() {
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        bottomSheetCoordinatorLayout.setVisibility(View.VISIBLE);
-
-
+    private void SaveTeacher() {
+        ParseObject parseObject=new ParseObject("SavedData");
+        ParseUser user=new ParseUser();
+        parseObject.put("username",user.getUsername());
     }
 
 
