@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finalproj_minor_gr2.LoginACtivity;
 import com.example.finalproj_minor_gr2.R;
 import com.parse.ParseUser;
 
@@ -14,7 +15,7 @@ import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class StudentProfileActivity extends AppCompatActivity {
-    LinearLayout stud_prof, stud_teacher,stud_school,stud_college;
+    LinearLayout stud_prof, stud_teacher, stud_school, stud_college, stud_logout;
     PrettyDialog prettyDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +34,24 @@ public class StudentProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(StudentProfileActivity.this, StudSearchTeacherActivity.class));
             }
         });
+        stud_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+                startActivity(new Intent(StudentProfileActivity.this, LoginACtivity.class));
+                StudentProfileActivity.this.finish();
+            }
+        });
         stud_college.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentProfileActivity.this,SearchCollegeActivity.class));
+                startActivity(new Intent(StudentProfileActivity.this, SearchCollegeActivity.class));
             }
         });
         stud_school.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentProfileActivity.this,SearchSchoolActivity.class));
+                startActivity(new Intent(StudentProfileActivity.this, SearchSchoolActivity.class));
             }
         });
         stud_prof.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +110,9 @@ public class StudentProfileActivity extends AppCompatActivity {
     private void BindViews() {
         stud_prof = findViewById(R.id.stud_prof);
         stud_teacher = findViewById(R.id.stud_teacher);
-        stud_school=findViewById(R.id.stud_school);
-        stud_college=findViewById(R.id.stud_college);
+        stud_school = findViewById(R.id.stud_school);
+        stud_college = findViewById(R.id.stud_college);
+        stud_logout = findViewById(R.id.stud_logout);
     }
 
 
