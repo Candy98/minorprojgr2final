@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -21,6 +22,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
@@ -38,12 +40,12 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     LinearLayout bottomSheetTeachers;
     Button buttonBottomSheetSaveTeacher, buttonBottomSheetCancelTeacher;
     PrettyDialog prettyDialog;
-    int[] bgrcv={R.drawable.bgcardviewcolor,R.drawable.bgcardviewcolor1,R.drawable.bgcardviewcolor2,
-            R.drawable.bgcardviewcolor3,R.drawable.bgcardviewcolor4,R.drawable.bgcardviewcolor5,
+    int[] bgrcv = {R.drawable.bgcardviewcolor, R.drawable.bgcardviewcolor1, R.drawable.bgcardviewcolor2,
+            R.drawable.bgcardviewcolor3, R.drawable.bgcardviewcolor4, R.drawable.bgcardviewcolor5,
             R.drawable.bgcardviewcolor6
     };
     Random random;
-    int pos=0;
+    int pos = 0;
 
 
     TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
@@ -57,6 +59,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
     String name, type;
+    boolean canFollow = false;
 
 
     @Override
@@ -101,11 +104,11 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                     query.findInBackground(new FindCallback<ParseUser>() {
                         @Override
                         public void done(List<ParseUser> objects, ParseException e) {
-                            random=new Random();
+                            random = new Random();
                             if (e == null) {
                                 if (objects.size() > 0) {
                                     for (ParseUser user : objects) {
-                                        pos=random.nextInt(6);
+                                        pos = random.nextInt(6);
                                         modelClassDemo = new ModelClassDemoSearchTeacher();
                                         modelClassDemo.setActivityName(user.getUsername());
                                         modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
@@ -148,13 +151,13 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                             user.get("actuallocation")).setIcon(R.drawable.full_name_draw)
                                     .setIconTint(R.color.colorFlower)
                                     .addButton(
-                                            "Save",                    // button text
+                                            "Follow",                    // button text
                                             R.color.pdlg_color_white,        // button text color
                                             R.color.pdlg_color_green,        // button background color
                                             new PrettyDialogCallback() {        // button OnClick listener
                                                 @Override
                                                 public void onClick() {
-                                                    SaveTeacher();
+                                                    FollowUser(user);
                                                 }
                                             }
                                     )
@@ -184,10 +187,60 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         });
     }
 
+    private void FollowUser(ParseUser user) {
+       /* if (canFollow==false){
+
+        ParseQuery<ParseUser>query=ParseUser.getQuery();
+        query.whereEqualTo("following",user.getUsername());
+        query.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (objects.size()==0){
+                    canFollow =true;
+                }
+                else {
+                    FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                    canFollow=false;
+
+
+                }
+            }
+        });}*/
+    try {
+
+
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("following", user.getUsername());
+        query.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null && objects.size() == 0) {
+                    ParseUser.getCurrentUser().add("following", user.getUsername());
+                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                Toast.makeText(StudSearchTeacherActivity.this, "Followed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+
+                }
+
+            }
+        });
+    }catch (Exception e){
+
+    }
+
+    }
+
     private void SaveTeacher() {
-        ParseObject parseObject=new ParseObject("SavedData");
-        ParseUser user=new ParseUser();
-        parseObject.put("username",user.getUsername());
+        ParseObject parseObject = new ParseObject("SavedData");
+        ParseUser user = new ParseUser();
+        parseObject.put("username", user.getUsername());
     }
 
 
