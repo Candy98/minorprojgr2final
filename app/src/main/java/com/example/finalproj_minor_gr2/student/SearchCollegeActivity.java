@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.finalproj_minor_gr2.Adapters.CustomAdapterRcvSearchTeacher;
 import com.example.finalproj_minor_gr2.R;
@@ -21,6 +23,9 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.util.ArrayList;
 import java.util.List;
 
+import libs.mjn.prettydialog.PrettyDialog;
+import libs.mjn.prettydialog.PrettyDialogCallback;
+
 public class SearchCollegeActivity extends AppCompatActivity {
     CustomEditText customEditText;
     String unameChecker, getUnameCheckerNext;
@@ -33,6 +38,7 @@ public class SearchCollegeActivity extends AppCompatActivity {
     RecyclerView rcv;
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
+    PrettyDialog prettyDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,56 @@ public class SearchCollegeActivity extends AppCompatActivity {
                 } else {
                     seletedLevel = "";
                 }
+            }
+        });
+        rcvAdaptor.setOnItemClickListener(new CustomAdapterRcvSearchTeacher.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, ArrayList<ModelClassDemoSearchTeacher> menulist) {
+           ParseQuery<ParseUser> query=ParseUser.getQuery();
+           query.whereEqualTo("username",menulist.get(position).getActivityName());
+           query.findInBackground(new FindCallback<ParseUser>() {
+               @Override
+               public void done(List<ParseUser> objects, ParseException e) {
+                   for (ParseUser user:objects){
+                       prettyDialog = new PrettyDialog(SearchCollegeActivity.this);
+                       prettyDialog.setTitle("Info")
+                               .setMessage("Name :" + (user.getUsername()) + "\n" + "Website: " +
+                                       user.get("website") + "\n" + "Description: " +
+                                       user.get("description") + "\n" + "Phone: " +
+                                       user.get("Phone") + "\n" + "Location: " +
+                                       user.get("actuallocation")).setIcon(R.drawable.full_name_draw)
+                               .setIconTint(R.color.colorFlower)
+                               .addButton(
+                                       "Save",                    // button text
+                                       R.color.pdlg_color_white,        // button text color
+                                       R.color.pdlg_color_green,        // button background color
+                                       new PrettyDialogCallback() {        // button OnClick listener
+                                           @Override
+                                           public void onClick() {
+                                           }
+                                       }
+                               )
+
+// Cancel button
+                               .addButton(
+                                       "Cancel",
+                                       R.color.pdlg_color_white,
+                                       R.color.pdlg_color_red,
+                                       new PrettyDialogCallback() {
+                                           @Override
+                                           public void onClick() {
+                                               prettyDialog.dismiss();
+                                               // Dismiss
+                                           }
+                                       }
+                               )
+                               .show();
+
+                   }
+               }
+           });
+
+
             }
         });
 

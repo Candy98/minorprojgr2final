@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.finalproj_minor_gr2.R;
 import com.example.finalproj_minor_gr2.model_classes.ModelClassDemoSearchTeacher;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
@@ -22,6 +24,11 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
     ArrayList<ModelClassDemoSearchTeacher> menuList;
     public OnItemLongClickListener mItemLongClickListener;
     public OnItemClickListener mItemClickListener;
+    int[] bgrcv={R.drawable.bgcardviewcolor,R.drawable.bgcardviewcolor1,R.drawable.bgcardviewcolor2,
+        R.drawable.bgcardviewcolor3,R.drawable.bgcardviewcolor4
+    };
+    Random random;
+    int pos;
 
 
     public CustomAdapterRcvSearchTeacher(Context context, ArrayList<ModelClassDemoSearchTeacher> menuList) {
@@ -45,9 +52,12 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
         if (holder instanceof ViewHolder) {
             final ModelClassDemoSearchTeacher name = getItem(position);
             ViewHolder genericViewHolder = (ViewHolder) holder;
-
+            random=new Random();
+            pos=random.nextInt(4);
             genericViewHolder.tvTeachersName.setText((name.getActivityName()));
             genericViewHolder.tvTeacherActualAddress.setText(name.getActivityLocation());
+            genericViewHolder.linearLayout.setBackgroundResource(bgrcv[pos]);
+
 
 
 
@@ -95,6 +105,8 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
         private TextView tvTeacherActualAddress;
         private ImageView imgView;
         private View rcvLinearLayout;
+        LinearLayout linearLayout;
+
 
         ViewHolder(final View itemView) {
             super(itemView);
@@ -104,7 +116,7 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
 
             //this.imgView = itemView.findViewById(R.id.icon);
             this.tvTeacherActualAddress=itemView.findViewById(R.id.tvActualAddressSearchTeacher);
-
+            this.linearLayout=itemView.findViewById(R.id.rcvlinlayout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

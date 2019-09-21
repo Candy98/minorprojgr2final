@@ -31,8 +31,6 @@ public class RegistrationActivity extends AppCompatActivity {
     Button regBtn;
     boolean isUname = false, isEmail = false, isPhnNo = false, isPwd = false, isRePwdMach = false;
     boolean isUpper = false, isNumber = false, isActualLocation = false, isValidWebsite = false;
-
-
     LoginACtivity sucSnack;
     ProgressDialog progressDialog;
     Intent intent;
@@ -123,6 +121,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                         } else {
                             selectedRegSubType = null;
+
 
                         }
                     }
@@ -360,6 +359,7 @@ public class RegistrationActivity extends AppCompatActivity {
         etWebsite = findViewById(R.id.etWebsite);
 
 
+
     }
 
     protected boolean isOnline() {
@@ -379,8 +379,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 .setTextColor(Color.parseColor("#ffffff"))
                 .setDuration(Snacky.LENGTH_INDEFINITE)
                 .success()
-
-
                 .show();
     }
 

@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_width="250dp"
             android:layout_gravity="center"
+            android:inputType="textPassword"
             android:hint="Password"
             android:textAlignment="center"
             android:textColorHint="#000000"
