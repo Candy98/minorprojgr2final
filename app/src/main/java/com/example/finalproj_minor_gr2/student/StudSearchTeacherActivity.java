@@ -48,6 +48,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     int pos = 0;
 
 
+
     TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
     Button searchTeacherBtn;
     MaterialSpinner spinnerLevelTeacherSearchTeacher;
@@ -160,7 +161,18 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                                     FollowUser(user);
                                                 }
                                             }
-                                    )
+                                    ) .addButton(
+                                    "Unfollow",
+                                    R.color.pdlg_color_white,
+                                    R.color.colorGrapeFruitDark,
+                                    new PrettyDialogCallback() {
+                                        @Override
+                                        public void onClick() {
+
+                                            Unfollow(user);
+                                        }
+                                    }
+                            )
 
 // Cancel button
                                     .addButton(
@@ -187,25 +199,24 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         });
     }
 
+    private void Unfollow(ParseUser user) {
+      ParseUser.getCurrentUser().getList("following").remove(user.getUsername());
+      List currentFollowingUsers=ParseUser.getCurrentUser().getList("following");
+      ParseUser.getCurrentUser().remove("following");
+      ParseUser.getCurrentUser().add("following",currentFollowingUsers);
+      ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+          @Override
+          public void done(ParseException e) {
+              if (e==null){
+                  FancyToast.makeText(StudSearchTeacherActivity.this, "Unfollowed" +user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+
+              }
+          }
+      });
+    }
+
     private void FollowUser(ParseUser user) {
-       /* if (canFollow==false){
 
-        ParseQuery<ParseUser>query=ParseUser.getQuery();
-        query.whereEqualTo("following",user.getUsername());
-        query.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> objects, ParseException e) {
-                if (objects.size()==0){
-                    canFollow =true;
-                }
-                else {
-                    FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
-                    canFollow=false;
-
-
-                }
-            }
-        });}*/
     try {
 
 
@@ -220,7 +231,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                         @Override
                         public void done(ParseException e) {
                             if (e == null) {
-                                Toast.makeText(StudSearchTeacherActivity.this, "Followed", Toast.LENGTH_SHORT).show();
+                                FancyToast.makeText(StudSearchTeacherActivity.this, "Followed "+user.getUsername() +user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
                             }
                         }
                     });
