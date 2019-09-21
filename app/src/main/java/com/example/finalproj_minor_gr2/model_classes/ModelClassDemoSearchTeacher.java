@@ -11,6 +11,15 @@ public class ModelClassDemoSearchTeacher {
    String desc,dest;
    String color;
     Drawable background;
+    int resource;
+
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
+    }
 
     public String getActivityLocation() {
         return activityLocation;

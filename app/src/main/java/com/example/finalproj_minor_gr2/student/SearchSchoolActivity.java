@@ -27,7 +27,7 @@ public class SearchSchoolActivity extends AppCompatActivity {
     String unameChecker, getUnameCheckerNext;
     Button searchSchoolBtn;
     MaterialSpinner spinnerLevelTeacherSearchSchool;
-    String[] levelTeacherSearchSchool = {"Select level", "Primary School", "High School", "Higher Secondary School"};
+    String[] levelTeacherSearchSchool = {"Select level", "Primary School", "High School", "Higher Secondary"};
     String seletedLevel = "";
     boolean isValidPin = false, isValidLevel = false;
     ArrayList<ModelClassDemoSearchTeacher> activityList = new ArrayList<>();

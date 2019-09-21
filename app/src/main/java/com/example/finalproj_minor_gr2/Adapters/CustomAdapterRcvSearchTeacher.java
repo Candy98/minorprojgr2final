@@ -24,11 +24,7 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
     ArrayList<ModelClassDemoSearchTeacher> menuList;
     public OnItemLongClickListener mItemLongClickListener;
     public OnItemClickListener mItemClickListener;
-    int[] bgrcv={R.drawable.bgcardviewcolor,R.drawable.bgcardviewcolor1,R.drawable.bgcardviewcolor2,
-        R.drawable.bgcardviewcolor3,R.drawable.bgcardviewcolor4
-    };
-    Random random;
-    int pos;
+
 
 
     public CustomAdapterRcvSearchTeacher(Context context, ArrayList<ModelClassDemoSearchTeacher> menuList) {
@@ -52,11 +48,10 @@ public class CustomAdapterRcvSearchTeacher extends RecyclerView.Adapter {
         if (holder instanceof ViewHolder) {
             final ModelClassDemoSearchTeacher name = getItem(position);
             ViewHolder genericViewHolder = (ViewHolder) holder;
-            random=new Random();
-            pos=random.nextInt(4);
+
             genericViewHolder.tvTeachersName.setText((name.getActivityName()));
             genericViewHolder.tvTeacherActualAddress.setText(name.getActivityLocation());
-            genericViewHolder.linearLayout.setBackgroundResource(bgrcv[pos]);
+            genericViewHolder.linearLayout.setBackgroundResource(name.getResource());
 
 
 

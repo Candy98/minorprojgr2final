@@ -25,6 +25,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
@@ -37,6 +38,13 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     LinearLayout bottomSheetTeachers;
     Button buttonBottomSheetSaveTeacher, buttonBottomSheetCancelTeacher;
     PrettyDialog prettyDialog;
+    int[] bgrcv={R.drawable.bgcardviewcolor,R.drawable.bgcardviewcolor1,R.drawable.bgcardviewcolor2,
+            R.drawable.bgcardviewcolor3,R.drawable.bgcardviewcolor4,R.drawable.bgcardviewcolor5,
+            R.drawable.bgcardviewcolor6
+    };
+    Random random;
+    int pos=0;
+
 
     TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
     Button searchTeacherBtn;
@@ -93,13 +101,15 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                     query.findInBackground(new FindCallback<ParseUser>() {
                         @Override
                         public void done(List<ParseUser> objects, ParseException e) {
+                            random=new Random();
                             if (e == null) {
                                 if (objects.size() > 0) {
                                     for (ParseUser user : objects) {
+                                        pos=random.nextInt(6);
                                         modelClassDemo = new ModelClassDemoSearchTeacher();
-
                                         modelClassDemo.setActivityName(user.getUsername());
                                         modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
+                                        modelClassDemo.setResource(bgrcv[pos]);
                                         activityList.add(modelClassDemo);
 
 
