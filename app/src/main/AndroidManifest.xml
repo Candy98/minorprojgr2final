@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ActionBar.Transparent">
-        <activity android:name=".student.StudentProfEditActivity"></activity>
+        <activity android:name=".student.MessageActivity"></activity>
+        <activity android:name=".student.FollowedUsersActivity" />
+        <activity android:name=".student.StudentProfEditActivity" />
         <activity android:name=".student.SearchCollegeActivity" />
         <activity android:name=".student.SearchSchoolActivity" />
         <activity android:name=".student.StudSearchTeacherActivity" />

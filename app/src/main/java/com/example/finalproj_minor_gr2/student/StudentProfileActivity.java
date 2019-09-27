@@ -15,7 +15,7 @@ import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class StudentProfileActivity extends AppCompatActivity {
-    LinearLayout stud_prof, stud_teacher, stud_school, stud_college, stud_logout;
+    LinearLayout stud_prof, stud_teacher, stud_school, stud_college, stud_logout, stud_saved;
     PrettyDialog prettyDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,12 @@ public class StudentProfileActivity extends AppCompatActivity {
     }
 
     private void Onclick() {
+        stud_saved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StudentProfileActivity.this, FollowedUsersActivity.class));
+            }
+        });
         stud_teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +100,19 @@ public class StudentProfileActivity extends AppCompatActivity {
                                         // Dismiss
                                     }
                                 }
-                        )
+                        ).addButton(
+                        "Message",
+                        R.color.pdlg_color_white,
+                        R.color.pdlg_color_red,
+                        new PrettyDialogCallback() {
+                            @Override
+                            public void onClick() {
+                                prettyDialog.dismiss();
+
+                                // Dismiss
+                            }
+                        }
+                )
                         .show();
 
             }
@@ -113,6 +131,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         stud_school = findViewById(R.id.stud_school);
         stud_college = findViewById(R.id.stud_college);
         stud_logout = findViewById(R.id.stud_logout);
+        stud_saved = findViewById(R.id.stud_saved);
     }
 
 

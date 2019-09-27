@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation files('libs/Tangid.jar')
     implementation 'com.github.mjn1369:prettydialog:1.0.4'
+    implementation 'com.github.mjn1369:prettydialog:1.0.4'
+
 
 }

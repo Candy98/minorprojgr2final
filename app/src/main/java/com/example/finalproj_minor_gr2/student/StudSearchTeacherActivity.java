@@ -1,11 +1,11 @@
 package com.example.finalproj_minor_gr2.student;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -48,7 +48,6 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     int pos = 0;
 
 
-
     TextView tvDescTeachers, tvSubOfferedTeacher, tvPhnNoTeacher, tvEmailTeacher, tvQualificationTeacher, tvWebsiteTeacher;
     Button searchTeacherBtn;
     MaterialSpinner spinnerLevelTeacherSearchTeacher;
@@ -59,6 +58,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     RecyclerView rcv;
     CustomAdapterRcvSearchTeacher rcvAdaptor;
     ModelClassDemoSearchTeacher modelClassDemo;
+
     String name, type;
     boolean canFollow = false;
 
@@ -161,7 +161,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                                     FollowUser(user);
                                                 }
                                             }
-                                    ) .addButton(
+                                    ).addButton(
                                     "Unfollow",
                                     R.color.pdlg_color_white,
                                     R.color.colorGrapeFruitDark,
@@ -186,7 +186,21 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                                     // Dismiss
                                                 }
                                             }
-                                    )
+                                    ).addButton(
+                                    "Message",
+                                    R.color.pdlg_color_white,
+                                    R.color.colorGrassDark,
+                                    new PrettyDialogCallback() {
+                                        @Override
+                                        public void onClick() {
+                                            prettyDialog.dismiss();
+                                            Intent intent=new Intent(StudSearchTeacherActivity.this,MessageActivity.class);
+                                            intent.putExtra("fromname",name);
+                                            startActivity(intent);
+
+                                        }
+                                    }
+                            )
                                     .show();
 
 
@@ -200,51 +214,51 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     }
 
     private void Unfollow(ParseUser user) {
-      ParseUser.getCurrentUser().getList("following").remove(user.getUsername());
-      List currentFollowingUsers=ParseUser.getCurrentUser().getList("following");
-      ParseUser.getCurrentUser().remove("following");
-      ParseUser.getCurrentUser().add("following",currentFollowingUsers);
-      ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-          @Override
-          public void done(ParseException e) {
-              if (e==null){
-                  FancyToast.makeText(StudSearchTeacherActivity.this, "Unfollowed" +user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
-
-              }
-          }
-      });
+        ParseUser.getCurrentUser().getList("following").remove(user.getUsername());
+        List currentFollowingUsers = ParseUser.getCurrentUser().getList("following");
+        ParseUser.getCurrentUser().remove("following");
+        ParseUser.getCurrentUser().put("following", currentFollowingUsers);
+        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    FancyToast.makeText(StudSearchTeacherActivity.this, "Unfollowed" + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                    prettyDialog.dismiss();
+                }
+            }
+        });
     }
 
     private void FollowUser(ParseUser user) {
 
-    try {
+        try {
 
 
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("following", user.getUsername());
-        query.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> objects, ParseException e) {
-                if (e == null && objects.size() == 0) {
-                    ParseUser.getCurrentUser().add("following", user.getUsername());
-                    ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                FancyToast.makeText(StudSearchTeacherActivity.this, "Followed "+user.getUsername() +user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+            ParseQuery<ParseUser> query = ParseUser.getQuery();
+            query.whereEqualTo("following", user.getUsername());
+            query.findInBackground(new FindCallback<ParseUser>() {
+                @Override
+                public void done(List<ParseUser> objects, ParseException e) {
+                    if (e == null && objects.size() == 0) {
+                        ParseUser.getCurrentUser().add("following", user.getUsername());
+                        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    FancyToast.makeText(StudSearchTeacherActivity.this, "Followed " + user.getUsername() + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                                }
                             }
-                        }
-                    });
-                } else {
-                    FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+                        });
+                    } else {
+                        FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+
+                    }
 
                 }
+            });
+        } catch (Exception e) {
 
-            }
-        });
-    }catch (Exception e){
-
-    }
+        }
 
     }
 
