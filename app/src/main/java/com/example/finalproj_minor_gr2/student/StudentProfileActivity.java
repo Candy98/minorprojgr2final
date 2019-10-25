@@ -6,10 +6,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.finalproj_minor_gr2.LoginACtivity;
 import com.example.finalproj_minor_gr2.R;
+import com.example.finalproj_minor_gr2.works.QueryWorksClass;
 import com.parse.ParseUser;
+
+import java.util.concurrent.TimeUnit;
 
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
@@ -17,14 +22,23 @@ import libs.mjn.prettydialog.PrettyDialogCallback;
 public class StudentProfileActivity extends AppCompatActivity {
     LinearLayout stud_prof, stud_teacher, stud_school, stud_college, stud_logout, stud_saved;
     PrettyDialog prettyDialog;
+    WorkManager workManager;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile);
+        workManager=WorkManager.getInstance();
         BindViews();
         Onclick();
+        QueryForMessage();
 
+    }
+
+    private void QueryForMessage() {
+        PeriodicWorkRequest querymessage=new PeriodicWorkRequest.Builder(QueryWorksClass.class,15,TimeUnit.SECONDS,5,TimeUnit.SECONDS).build();
+        WorkManager mWorkManager = WorkManager.getInstance();
+        mWorkManager.enqueue(querymessage);
     }
 
     private void Onclick() {

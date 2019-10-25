@@ -51,6 +51,7 @@ dependencies {
     implementation files('libs/Tangid.jar')
     implementation 'com.github.mjn1369:prettydialog:1.0.4'
     implementation 'com.github.mjn1369:prettydialog:1.0.4'
+    implementation "android.arch.work:work-runtime:1.0.0"
 
 
 }
