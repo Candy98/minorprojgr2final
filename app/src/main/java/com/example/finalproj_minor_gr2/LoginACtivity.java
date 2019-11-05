@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.finalproj_minor_gr2.student.SearchSchoolActivity;
-import com.example.finalproj_minor_gr2.student.StudSearchTeacherActivity;
 import com.example.finalproj_minor_gr2.student.StudentProfileActivity;
-import com.example.finalproj_minor_gr2.teacher.TeacherMainActivity;
+import com.example.finalproj_minor_gr2.teacher.TeacherEditActivity;
+import com.example.finalproj_minor_gr2.teacher.TeachersHomeActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -115,7 +114,7 @@ public class LoginACtivity extends AppCompatActivity {
             }
             break;
             case "Teacher":{
-                startActivity(new Intent(LoginACtivity.this, TeacherMainActivity.class));
+                startActivity(new Intent(LoginACtivity.this, TeachersHomeActivity.class));
             }
             break;
             default: break;

@@ -13,7 +13,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class TeacherMainActivity extends AppCompatActivity implements View.OnClickListener {
+public class TeacherEditActivity extends AppCompatActivity implements View.OnClickListener {
     EditText etUsernameTeacher, etCourseofferedTeacher, etLocationTeacher, etDescTeacher, etQualTeacher;
     Button updateTeachersInfo;
 

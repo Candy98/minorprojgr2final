@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".teacher.TeacherMainActivity"
+    tools:context=".teacher.TeacherEditActivity"
     android:background="@drawable/bg_fragment"
     android:gravity="center"
     >

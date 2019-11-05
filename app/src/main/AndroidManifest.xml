@@ -15,13 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ActionBar.Transparent">
-        <activity android:name=".student.MessageActivity"></activity>
+        <activity
+            android:name=".message.MessageNameLIstActivity"
+            android:label="@string/title_activity_message_name_list"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".teacher.TeachersHomeActivity" />
+        <activity android:name=".student.MessageActivity" />
         <activity android:name=".student.FollowedUsersActivity" />
         <activity android:name=".student.StudentProfEditActivity" />
         <activity android:name=".student.SearchCollegeActivity" />
         <activity android:name=".student.SearchSchoolActivity" />
         <activity android:name=".student.StudSearchTeacherActivity" />
-        <activity android:name=".teacher.TeacherMainActivity" />
+        <activity android:name=".teacher.TeacherEditActivity" />
         <activity android:name=".student.TeachersListActivity" />
         <activity
             android:name=".student.StudentProfileActivity"

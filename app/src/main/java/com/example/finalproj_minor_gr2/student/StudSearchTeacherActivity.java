@@ -195,7 +195,10 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                         public void onClick() {
                                             prettyDialog.dismiss();
                                             Intent intent=new Intent(StudSearchTeacherActivity.this,MessageActivity.class);
-                                            intent.putExtra("fromname",name);
+                                            intent.putExtra("fromname",ParseUser.getCurrentUser().getUsername());
+                                            intent.putExtra("phone",user.get("Phone").toString());
+                                            intent.putExtra("type",user.get("Regtype").toString());
+                                            intent.putExtra("toName",user.getUsername());
                                             startActivity(intent);
 
                                         }
