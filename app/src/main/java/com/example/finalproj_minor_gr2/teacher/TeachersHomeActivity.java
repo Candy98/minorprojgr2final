@@ -33,6 +33,14 @@ public class TeachersHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(TeachersHomeActivity.this, MessageActivity.class));
             }
         });
+        teacher_stud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeachersHomeActivity.this, TeacherSearchStudentActivity.class));
+
+
+            }
+        });
         teacher_prof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

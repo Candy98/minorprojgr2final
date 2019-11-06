@@ -15,10 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ActionBar.Transparent">
+        <activity android:name=".teacher.TeacherSearchStudentActivity"></activity>
         <activity
             android:name=".message.MessageNameLIstActivity"
             android:label="@string/title_activity_message_name_list"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".teacher.TeachersHomeActivity" />
         <activity android:name=".student.MessageActivity" />
         <activity android:name=".student.FollowedUsersActivity" />

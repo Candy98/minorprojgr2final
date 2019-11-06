@@ -1,7 +1,8 @@
-package com.example.finalproj_minor_gr2.student;
+package com.example.finalproj_minor_gr2.teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.finalproj_minor_gr2.Adapters.CustomAdapterRcvSearchTeacher;
 import com.example.finalproj_minor_gr2.R;
 import com.example.finalproj_minor_gr2.model_classes.ModelClassDemoSearchTeacher;
+import com.example.finalproj_minor_gr2.student.MessageActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.libizo.CustomEditText;
@@ -32,7 +34,8 @@ import java.util.Random;
 import libs.mjn.prettydialog.PrettyDialog;
 import libs.mjn.prettydialog.PrettyDialogCallback;
 
-public class StudSearchTeacherActivity extends AppCompatActivity {
+public class TeacherSearchStudentActivity extends AppCompatActivity {
+
     CustomEditText customEditText;
     String unameChecker, getUnameCheckerNext;
     BottomSheetBehavior behavior;
@@ -66,7 +69,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stud_search_teacher);
+        setContentView(R.layout.activity_teacher_search_student);
         ViewBinder();
 
 
@@ -91,44 +94,45 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         });
 
 
-        searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                PinValidator(customEditText.getText().toString());
-                LvelValidator(seletedLevel);
-                if (isValidLevel && isValidPin) {
-                    ParseQuery<ParseUser> query = ParseUser.getQuery();
-                    query.whereEqualTo("Regtype", "Teacher");
-                    query.whereEqualTo("pincode", customEditText.getText().toString());
-                    query.whereEqualTo("level", seletedLevel);
-                    query.findInBackground(new FindCallback<ParseUser>() {
-                        @Override
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            random = new Random();
-                            if (e == null) {
-                                if (objects.size() > 0) {
-                                    for (ParseUser user : objects) {
-                                        pos = random.nextInt(6);
-                                        modelClassDemo = new ModelClassDemoSearchTeacher();
-                                        modelClassDemo.setActivityName(user.getUsername());
-                                        modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
-                                        modelClassDemo.setResource(bgrcv[pos]);
-                                        activityList.add(modelClassDemo);
+      searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              PinValidator(customEditText.getText().toString());
+              Log.i("Clicked",customEditText.getText().toString());
+              LvelValidator(seletedLevel);
+              if (isValidLevel && isValidPin) {
+                  ParseQuery<ParseUser> query = ParseUser.getQuery();
+                  query.whereEqualTo("Regtype", "Student");
+                  Log.i("Clicked",seletedLevel);
+                  query.whereEqualTo("pincode", customEditText.getText().toString());
+                  query.whereEqualTo("level", seletedLevel);
+                  query.findInBackground(new FindCallback<ParseUser>() {
+                      @Override
+                      public void done(List<ParseUser> objects, ParseException e) {
+                          random = new Random();
+                          if (e == null) {
+                              if (objects.size() > 0) {
+                                  for (ParseUser user : objects) {
+                                      pos = random.nextInt(6);
+                                      modelClassDemo = new ModelClassDemoSearchTeacher();
+                                      modelClassDemo.setActivityName(user.getUsername());
+                                      modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
+                                      modelClassDemo.setResource(bgrcv[pos]);
+                                      activityList.add(modelClassDemo);
 
 
-                                    }
-                                    rcv.setAdapter(rcvAdaptor);
+                                  }
+                                  rcv.setAdapter(rcvAdaptor);
 
 
-                                }
-                            }
-                        }
-                    });
+                              }
+                          }
+                      }
+                  });
 
-                }
-
-            }
-        });
+              }
+          }
+      });
     }
 
     private void ParseFetchData(final String activityName) {
@@ -142,7 +146,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                 if (e == null) {
                     if (objects.size() > 0) {
                         for (ParseUser user : objects) {
-                            prettyDialog = new PrettyDialog(StudSearchTeacherActivity.this);
+                            prettyDialog = new PrettyDialog(TeacherSearchStudentActivity.this);
                             prettyDialog.setTitle("Info")
                                     .setMessage("Name :" + (user.getUsername()) + "\n" + "Website: " +
                                             user.get("website") + "\n" + "Description: " +
@@ -193,11 +197,11 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                         @Override
                                         public void onClick() {
                                             prettyDialog.dismiss();
-                                            Intent intent=new Intent(StudSearchTeacherActivity.this,MessageActivity.class);
-                                            intent.putExtra("fromname",ParseUser.getCurrentUser().getUsername());
-                                            intent.putExtra("phone",user.get("Phone").toString());
-                                            intent.putExtra("type",user.get("Regtype").toString());
-                                            intent.putExtra("toName",user.getUsername());
+                                            Intent intent = new Intent(TeacherSearchStudentActivity.this, MessageActivity.class);
+                                            intent.putExtra("fromname", ParseUser.getCurrentUser().getUsername());
+                                            intent.putExtra("phone", user.get("Phone").toString());
+                                            intent.putExtra("type", user.get("Regtype").toString());
+                                            intent.putExtra("toName", user.getUsername());
                                             startActivity(intent);
 
                                         }
@@ -224,7 +228,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    FancyToast.makeText(StudSearchTeacherActivity.this, "Unfollowed" + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                    FancyToast.makeText(TeacherSearchStudentActivity.this, "Unfollowed" + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
                     prettyDialog.dismiss();
                 }
             }
@@ -247,12 +251,12 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
-                                    FancyToast.makeText(StudSearchTeacherActivity.this, "Followed " + user.getUsername() + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                                    FancyToast.makeText(TeacherSearchStudentActivity.this, "Followed " + user.getUsername() + user.getUsername(), FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
                                 }
                             }
                         });
                     } else {
-                        FancyToast.makeText(StudSearchTeacherActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+                        FancyToast.makeText(TeacherSearchStudentActivity.this, "Already followed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
 
                     }
 
@@ -273,7 +277,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
 
     private void LvelValidator(String seletedLevel) {
         if (seletedLevel.equals("")) {
-            FancyToast.makeText(StudSearchTeacherActivity.this, "Please select teacher's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(TeacherSearchStudentActivity.this, "Please select teacher's level", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidLevel = false;
         } else {
             isValidLevel = true;
@@ -282,7 +286,7 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
 
     private void PinValidator(String pin) {
         if (pin.equals("")) {
-            FancyToast.makeText(StudSearchTeacherActivity.this, "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+            FancyToast.makeText(TeacherSearchStudentActivity.this, "Please Enter a pincode", FancyToast.LENGTH_SHORT, FancyToast.ERROR, true).show();
             isValidPin = false;
         } else {
             isValidPin = true;
@@ -292,13 +296,12 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
     }
 
     private void ViewBinder() {
-        customEditText = findViewById(R.id.etPincodeSearchTeacher);
-        searchTeacherBtn = findViewById(R.id.searchTeacherBtn);
-        spinnerLevelTeacherSearchTeacher = findViewById(R.id.spinnerLevelTeacherSearchTeacher);
-        rcv = findViewById(R.id.rcvFragmentSearchTeachers);
-        rcvAdaptor = new CustomAdapterRcvSearchTeacher(StudSearchTeacherActivity.this, activityList);
+        customEditText = findViewById(R.id.etPincodeSearchStudentTeacher);
+        searchTeacherBtn = findViewById(R.id.searchStudentTeacherBtn);
+        spinnerLevelTeacherSearchTeacher = findViewById(R.id.spinnerLevelStudSearchTeacherTeacher);
+        rcv = findViewById(R.id.rcvFragmentSearchStudentTeachers);
+        rcvAdaptor = new CustomAdapterRcvSearchTeacher(TeacherSearchStudentActivity.this, activityList);
 
 
     }
-
 }

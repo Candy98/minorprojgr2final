@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -37,7 +35,7 @@
             android:orientation="horizontal">
 
             <com.libizo.CustomEditText
-                android:id="@+id/etPincodeSearchTeacher"
+                android:id="@+id/etPincodeSearchStudentTeacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -62,7 +60,7 @@
             android:layout_height="10dp"></View>
 
         <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/spinnerLevelTeacherSearchTeacher"
+            android:id="@+id/spinnerLevelStudSearchTeacherTeacher"
             app:ms_arrow_tint="#FF1744"
             app:ms_background_color="#07E53935"
             android:layout_width="match_parent"
@@ -80,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/searchTeacherBtn"
+            android:id="@+id/searchStudentTeacherBtn"
             android:background="@drawable/shape_btn_2"
             android:text="Search"
             android:textStyle="bold"
@@ -98,7 +96,7 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvFragmentSearchTeachers"
+            android:id="@+id/rcvFragmentSearchStudentTeachers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -106,6 +104,5 @@
             ></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
 
 </LinearLayout>
