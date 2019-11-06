@@ -1,6 +1,7 @@
 package com.example.finalproj_minor_gr2.teacher;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -202,6 +203,20 @@ public class TeacherSearchStudentActivity extends AppCompatActivity {
                                             intent.putExtra("phone", user.get("Phone").toString());
                                             intent.putExtra("type", user.get("Regtype").toString());
                                             intent.putExtra("toName", user.getUsername());
+                                            startActivity(intent);
+
+                                        }
+                                    }
+                            )  .addButton(
+                                    "Call",
+                                    R.color.pdlg_color_white,
+
+                                    R.color.pdlg_color_red,
+                                    new PrettyDialogCallback() {
+                                        @Override
+                                        public void onClick() {
+                                            // Dismiss
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", user.get("Phone").toString(), null));
                                             startActivity(intent);
 
                                         }

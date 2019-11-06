@@ -27,6 +27,12 @@ public class TeachersHomeActivity extends AppCompatActivity {
     }
 
     private void OnClicks() {
+        teacher_followed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TeachersHomeActivity.this, FollowedStudentActivity.class));
+            }
+        });
         teacher_queries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
