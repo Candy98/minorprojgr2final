@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ActionBar.Transparent">
-        <activity android:name=".college.SchoolDashboardActivity"></activity>
+        <activity android:name=".school.CollegeEditActivity"></activity>
+        <activity android:name=".school.CollegeDashboardActivity" />
+        <activity android:name=".college.SchoolDashboardActivity" />
         <activity android:name=".teacher.FollowedStudentActivity" />
         <activity android:name=".teacher.TeacherSearchStudentActivity" />
         <activity

@@ -18,6 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
+import com.tuyenmonkey.mkloader.MKLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 public class SearchSchoolActivity extends AppCompatActivity {
     CustomEditText customEditText;
     String unameChecker, getUnameCheckerNext;
+    MKLoader mkLoader;
     Button searchSchoolBtn;
     MaterialSpinner spinnerLevelTeacherSearchSchool;
     String[] levelTeacherSearchSchool = {"Select level", "Primary School", "High School", "Higher Secondary"};
@@ -61,6 +63,8 @@ public class SearchSchoolActivity extends AppCompatActivity {
         searchSchoolBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                mkLoader.setVisibility(View.VISIBLE);
+
                 PinValidator(customEditText.getText().toString());
                 LvelValidator(seletedLevel);
                 if (isValidLevel && isValidPin) {
@@ -82,6 +86,7 @@ public class SearchSchoolActivity extends AppCompatActivity {
 
 
                                     }
+                                    mkLoader.setVisibility(View.INVISIBLE);
                                     rcv.setAdapter(rcvAdaptor);
 
 
@@ -122,6 +127,7 @@ public class SearchSchoolActivity extends AppCompatActivity {
         spinnerLevelTeacherSearchSchool = findViewById(R.id.spinnerLevelTeacherSearchSchool);
         rcv = findViewById(R.id.rcvFragmentSearchSchool);
         rcvAdaptor = new CustomAdapterRcvSearchTeacher(SearchSchoolActivity.this, activityList);
+        mkLoader=findViewById(R.id.loaderSearchTeacher);
 
 
     }
