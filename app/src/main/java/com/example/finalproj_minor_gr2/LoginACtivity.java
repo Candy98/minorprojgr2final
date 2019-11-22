@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.finalproj_minor_gr2.school.CollegeEditActivity;
 import com.example.finalproj_minor_gr2.student.StudentProfileActivity;
 import com.example.finalproj_minor_gr2.teacher.TeacherEditActivity;
 import com.example.finalproj_minor_gr2.teacher.TeachersHomeActivity;
@@ -115,6 +116,16 @@ public class LoginACtivity extends AppCompatActivity {
             break;
             case "Teacher":{
                 startActivity(new Intent(LoginACtivity.this, TeachersHomeActivity.class));
+            }
+            break;
+            case "School":{
+                startActivity(new Intent(LoginACtivity.this, TeachersHomeActivity.class));
+
+            }
+            break;
+            case "College":{
+                startActivity(new Intent(LoginACtivity.this, CollegeEditActivity.class));
+
             }
             break;
             default: break;

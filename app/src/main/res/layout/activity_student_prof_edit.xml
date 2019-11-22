@@ -35,7 +35,7 @@
         app:libIZO_setStrokeWidth="2dp" />
 
     <com.libizo.CustomEditText
-        android:id="@+id/etCourseStud"
+        android:id="@+id/etCourseClg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

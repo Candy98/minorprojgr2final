@@ -38,7 +38,7 @@ public class StudentProfEditActivity extends AppCompatActivity implements View.O
     private void BindViews() {
 
         etUsernameStud = findViewById(R.id.etUsernameStud);
-        etCourseStud = findViewById(R.id.etCourseStud);
+        etCourseStud = findViewById(R.id.etCourseClg);
         etLocationStud = findViewById(R.id.etLocationStud);
         etDescStud = findViewById(R.id.etDescStud);
         updateStudentInfo = findViewById(R.id.updateStudentInfo);
