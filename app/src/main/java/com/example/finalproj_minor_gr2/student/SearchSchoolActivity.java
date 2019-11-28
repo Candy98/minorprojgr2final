@@ -1,6 +1,7 @@
 package com.example.finalproj_minor_gr2.student;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -148,6 +149,20 @@ public class SearchSchoolActivity extends AppCompatActivity {
                                         public void onClick() {
 
                                             Unfollow(user);
+                                        }
+                                    }
+                            ).addButton(
+                                    "Call",
+                                    R.color.pdlg_color_white,
+
+                                    R.color.pdlg_color_red,
+                                    new PrettyDialogCallback() {
+                                        @Override
+                                        public void onClick() {
+                                            // Dismiss
+                                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", user.get("Phone").toString(), null));
+                                            startActivity(intent);
+
                                         }
                                     }
                             )
