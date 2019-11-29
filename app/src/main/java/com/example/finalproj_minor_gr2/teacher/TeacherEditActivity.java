@@ -56,8 +56,6 @@ public class TeacherEditActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         final ParseUser parseUser = ParseUser.getCurrentUser();
-
-
         parseUser.put("username", etUsernameTeacher.getText().toString());
         parseUser.put("courseoffered", etCourseofferedTeacher.getText().toString());
         parseUser.put("actuallocation", etLocationTeacher.getText().toString());

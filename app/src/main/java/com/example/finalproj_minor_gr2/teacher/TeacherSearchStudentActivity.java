@@ -1,5 +1,6 @@
 package com.example.finalproj_minor_gr2.teacher;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.example.finalproj_minor_gr2.Adapters.CustomAdapterRcvSearchTeacher;
 import com.example.finalproj_minor_gr2.R;
 import com.example.finalproj_minor_gr2.model_classes.ModelClassDemoSearchTeacher;
 import com.example.finalproj_minor_gr2.student.MessageActivity;
+import com.example.finalproj_minor_gr2.student.SearchCollegeActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.libizo.CustomEditText;
@@ -95,45 +97,64 @@ public class TeacherSearchStudentActivity extends AppCompatActivity {
         });
 
 
-      searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              PinValidator(customEditText.getText().toString());
-              Log.i("Clicked",customEditText.getText().toString());
-              LvelValidator(seletedLevel);
-              if (isValidLevel && isValidPin) {
-                  ParseQuery<ParseUser> query = ParseUser.getQuery();
-                  query.whereEqualTo("Regtype", "Student");
-                  Log.i("Clicked",seletedLevel);
-                  query.whereEqualTo("pincode", customEditText.getText().toString());
-                  query.whereEqualTo("level", seletedLevel);
-                  query.findInBackground(new FindCallback<ParseUser>() {
-                      @Override
-                      public void done(List<ParseUser> objects, ParseException e) {
-                          random = new Random();
-                          if (e == null) {
-                              if (objects.size() > 0) {
-                                  for (ParseUser user : objects) {
-                                      pos = random.nextInt(6);
-                                      modelClassDemo = new ModelClassDemoSearchTeacher();
-                                      modelClassDemo.setActivityName(user.getUsername());
-                                      modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
-                                      modelClassDemo.setResource(bgrcv[pos]);
-                                      activityList.add(modelClassDemo);
+        searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProgressDialog pd=new ProgressDialog(TeacherSearchStudentActivity.this);
+                pd.setMessage("Loading");
+                PinValidator(customEditText.getText().toString());
+                Log.i("Clicked", customEditText.getText().toString());
+                LvelValidator(seletedLevel);
+                if (isValidLevel && isValidPin) {
+                    pd.show();
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    query.whereEqualTo("Regtype", "Student");
+                    Log.i("Clicked", seletedLevel);
+                    query.whereEqualTo("pincode", customEditText.getText().toString());
+                    query.whereEqualTo("level", seletedLevel);
+                    query.findInBackground(new FindCallback<ParseUser>() {
+                        @Override
+                        public void done(List<ParseUser> objects, ParseException e) {
+                            random = new Random();
+                            if (e == null) {
+                                if (objects.size() > 0) {
+                                    for (ParseUser user : objects) {
+                                        pos = random.nextInt(6);
+                                        modelClassDemo = new ModelClassDemoSearchTeacher();
+                                        modelClassDemo.setActivityName(user.getUsername());
+                                        modelClassDemo.setActivityLocation(user.get("actuallocation").toString());
+                                        modelClassDemo.setResource(bgrcv[pos]);
+                                        activityList.add(modelClassDemo);
 
 
-                                  }
-                                  rcv.setAdapter(rcvAdaptor);
+                                    }
+                                    rcv.setAdapter(rcvAdaptor);
 
 
-                              }
-                          }
-                      }
-                  });
+                                } else {
+                                    prettyDialog = new PrettyDialog(TeacherSearchStudentActivity.this);
+                                    prettyDialog.setTitle("Info")
+                                            .setMessage("No results found")
+                                            .setIconTint(R.color.colorFlower)
+                                            .addButton(
+                                                    "Ok",                    // button text
+                                                    R.color.pdlg_color_white,        // button text color
+                                                    R.color.pdlg_color_green,        // button background color
+                                                    new PrettyDialogCallback() {        // button OnClick listener
+                                                        @Override
+                                                        public void onClick() {
+                                                        }
+                                                    }
+                                            ).show();
+                                pd.dismiss();
+                                }
+                            }
+                        }
+                    });
 
-              }
-          }
-      });
+                }
+            }
+        });
     }
 
     private void ParseFetchData(final String activityName) {
@@ -207,7 +228,7 @@ public class TeacherSearchStudentActivity extends AppCompatActivity {
 
                                         }
                                     }
-                            )  .addButton(
+                            ).addButton(
                                     "Call",
                                     R.color.pdlg_color_white,
 

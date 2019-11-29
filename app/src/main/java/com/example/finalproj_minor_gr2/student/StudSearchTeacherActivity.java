@@ -1,5 +1,6 @@
 package com.example.finalproj_minor_gr2.student;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -95,9 +96,12 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
         searchTeacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                ProgressDialog pd=new ProgressDialog(StudSearchTeacherActivity.this);
+                pd.setMessage("Loading");
                 PinValidator(customEditText.getText().toString());
                 LvelValidator(seletedLevel);
                 if (isValidLevel && isValidPin) {
+                    pd.show();
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
                     query.whereEqualTo("Regtype", "Teacher");
                     query.whereEqualTo("pincode", customEditText.getText().toString());
@@ -121,7 +125,23 @@ public class StudSearchTeacherActivity extends AppCompatActivity {
                                     rcv.setAdapter(rcvAdaptor);
 
 
+                                }else{
+                                    prettyDialog = new PrettyDialog(StudSearchTeacherActivity.this);
+                                    prettyDialog.setTitle("Info")
+                                            .setMessage("No results found")
+                                            .setIconTint(R.color.colorFlower)
+                                            .addButton(
+                                                    "Ok",                    // button text
+                                                    R.color.pdlg_color_white,        // button text color
+                                                    R.color.pdlg_color_green,        // button background color
+                                                    new PrettyDialogCallback() {        // button OnClick listener
+                                                        @Override
+                                                        public void onClick() {
+                                                        }
+                                                    }
+                                            ).show();
                                 }
+                                pd.dismiss();
                             }
                         }
                     });
